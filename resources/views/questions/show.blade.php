@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Pertanyaan #{{$question->id}}</div>
+                <div class="card-header">Pertanyaan #{{$question->user->name}}</div>
 
                 <div class="card-body">
                     <h1>{{$question->title}}</h1>
@@ -17,8 +17,11 @@
                         
                     
             <div class="card mt-2 ">
-                <div class="card-header bg-primary">Jawaban #{{$jawaban->id}} 
+                <div class="card-header bg-success">Jawaban #{{$jawaban->user->name}} 
+
+                
                     @if ($jawaban->user_id==Auth::user()->id)
+                    <a href="/jawaban/{{$jawaban->id}}/edit" class="btn btn-sm btn-warning">Edit</a>
                     <form action="/jawaban/{{$jawaban->id}}" method="POST" style="display:inline">
                     @csrf
                     @method('DELETE')
@@ -32,7 +35,7 @@
             </div>
 
                 <div class="card-body">
-                    Jawaban: {{$jawaban->content}}
+                    {{$jawaban->content}}
                     
                 </div>
             </div>

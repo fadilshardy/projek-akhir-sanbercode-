@@ -70,7 +70,7 @@ class AnswerController extends Controller
     {
         //
         $answer = Answer::find($id);
-        return view('answer.edit',compact('answer'));
+        return view('answers.edit',compact('answer'));
     }
 
     /**
@@ -84,10 +84,10 @@ class AnswerController extends Controller
     {
         //
         $answer=Answer::Where('id','=',$id)->update([
-            'title' =>$request['title'],
             'content' =>$request['content'],
         ]);
-        return redirect('/answer');
+        //dd($request['question_id']);
+        return redirect('/pertanyaan/'.$request['question_id']);
     }
 
     /**
