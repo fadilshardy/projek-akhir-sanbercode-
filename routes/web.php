@@ -20,6 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('answer', 'AnswerController');
+Route::resource('jawaban', 'AnswerController');
 
-Route::resource('questions', 'QuestionController');
+Route::resource('pertanyaan', 'QuestionController');
