@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use Illuminate\Http\Request;
-
+use App\Answer;
 class QuestionController extends Controller
 {
     public function index()
@@ -32,17 +32,20 @@ class QuestionController extends Controller
             'content' => $validated['content'],
 
         ]);
-        return redirect()->route('questions.index');
+        return redirect()->route('pertanyaan.index');
     }
 
-    public function show(Question $question)
+    public function show($id)
     {
-        return view('questions.show', compact('question'));
+        $question = Question::find($id);
+        $answer= Answer::where('question_id','=',$id)->get();
+        //dd($answer);
+        return view('questions.show', compact('question','answer'));
     }
 
-    public function edit(Question $question)
+    public function edit($id)
     {
-
+        $question = Question::find($id);
         return view('questions.edit', compact('question'));
 
     }
@@ -58,6 +61,7 @@ class QuestionController extends Controller
             'title' => $validated['title'],
             'content' => $validated['content'],
         ]);
+        return redirect('/pertanyaan');
 
     }
 

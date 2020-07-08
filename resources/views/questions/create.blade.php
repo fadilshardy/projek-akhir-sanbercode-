@@ -8,7 +8,7 @@
                 <div class="card-header">Buat Pertanyaan Baru</div>
 
                 <div class="card-body">
-                    <form action="{{route('questions.store')}}" method="POST">
+                    <form action="{{route('pertanyaan.store')}}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="title">isi title</label>

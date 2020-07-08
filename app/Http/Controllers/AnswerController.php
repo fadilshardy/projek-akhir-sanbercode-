@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Answer;
+Use Illuminate\Support\Facades\Auth;
 class AnswerController extends Controller
 {
     /**
@@ -35,14 +36,16 @@ class AnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id,Request $request)
+    public function store(Request $request)
     {
+        //dd($request->all());
         //
         $answer = Answer::create([
             'content'=>$request['content'],
-            'question_id'=>$id,
+            'question_id'=>$request['question_id'],
+            'user_id' =>Auth::user()->id
         ]);
-        return redirect('/answer');
+        return redirect('/pertanyaan/'.$request['question_id']);
     }
 
     /**
@@ -81,6 +84,7 @@ class AnswerController extends Controller
     {
         //
         $answer=Answer::Where('id','=',$id)->update([
+            'title' =>$request['title'],
             'content' =>$request['content'],
         ]);
         return redirect('/answer');
@@ -92,10 +96,11 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,Request $request)
     {
         //
+        //dd($request->all());
         $answer=Answer::destroy($id);
-        return redirect('/answer');
+        return redirect('/pertanyaan/'.$request['question_id']);
     }
 }

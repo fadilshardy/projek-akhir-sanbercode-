@@ -28,9 +28,9 @@
                                 <td>{{$item->title}}</td>
                                 <td>{{$item->content}}</td>
                                 <td class="text-white text-center">
-                                    <a href="/questions/{{$item->id}}" class="btn btn-success  btn-sm">view</a>
-                                    <a href="/questions/{{$item->id}}/edit" class="btn btn-info btn-sm">Edit</a>
-                                    <form action="/questions/{{$item->id}}" method="POST" style="display:inline">
+                                    <a href="/pertanyaan/{{$item->id}}" class="btn btn-success  btn-sm">view</a>
+                                    <a href="/pertanyaan/{{$item->id}}/edit" class="btn btn-info btn-sm">Edit</a>
+                                    <form action="/pertanyaan/{{$item->id}}" method="POST" style="display:inline">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm">
