@@ -39,21 +39,19 @@
                         <button class="btn btn-sm btn-info">tag3</button>
                       </div>
                     </div>
-                    <div class="col-sm-2 d-flex align-items-center justify-content-end">
-                      <div class="row">
+                    <div class="col-sm-2 summary d-flex align-items-center justify-content-end">
                         <div class="col-sm">
-                          <div class="card summary text-center">
+                          <div class="card  text-center">
                             <h5>0</h5>
                             <p>vote</p>
                           </div>
                         </div>
                         <div class="col-sm">
-                          <div class="card summary text-center">
+                          <div class="card  text-center">
                             <h5>0</h5>
                             <p>answer</p>
                           </div>
                         </div>
-                      </div>
                     </div>
                   </div>
                   <hr>
@@ -64,10 +62,14 @@
   
             <div class="col-sm-3">
               <div class="card">
-                <div class="card-header">Explore</div>
-                <div class="card-body">
-                  ajsdhaiud
-                </div>
+                <div class="card-header">Explore by Tags</div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><i class="fa fa-star" aria-hidden="true"></i> Node.JS</li>
+                  <li class="list-group-item"><i class="fa fa-star" aria-hidden="true"></i> HTML</li>
+                  <li class="list-group-item"><i class="fa fa-star" aria-hidden="true"></i> CSS</li>
+                  <li class="list-group-item"><i class="fa fa-star" aria-hidden="true"></i> PHP</li>
+                  <li class="list-group-item"><i class="fa fa-star" aria-hidden="true"></i> JavaScript</li>
+                </ul>
 
               </div>
             </div>

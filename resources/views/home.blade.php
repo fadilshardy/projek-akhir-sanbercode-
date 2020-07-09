@@ -17,7 +17,7 @@
                     You are logged in!
                     <br>
                     <br>
-                    <a href="/forum" class="btn btn-sm btn-info">Go to forum</a>
+                    <a href="/forum" class="btn btn-sm btn-success">Go to forum</a>
                 </div>
             </div>
         </div>

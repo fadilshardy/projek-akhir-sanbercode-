@@ -11006,10 +11006,14 @@ body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
 
-.card.summary p {
+.summary .card p {
   font-size: 0.65rem !important;
 }
 
-.card.summary {
-  margin: 0;
+.summary .col-sm {
+  padding: 0 4px;
+}
+
+.list-group-item {
+  border-bottom: 2px solid black;
 }
