@@ -11,8 +11,14 @@ class QuestionController extends Controller
 {
     public function index()
     {
+        $question = Question::get();
+
+        $question = $question->sortByDesc(function ($question) {
+                    return $question->votes->sum('voted');
+                });
         return view('questions.index', [
-            'questions' => Question::all(),
+             'questions' => $question,
+            // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
         ]);
     }
 

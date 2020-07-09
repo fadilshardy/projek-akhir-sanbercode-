@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="card-body">
-                    {{$jawaban->content}}
+                    {!!$jawaban->content!!}
                     <footer>{{$jawaban->created_at}}</footer>
                 </div>
             </div>
