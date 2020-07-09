@@ -10,7 +10,7 @@
                         @endforeach</div>
 
                 <div class="card-body">
-                    <h1>{{$question->title}}</h1>
+                    <h1>{{$question->title}} </h1>
                     <p>{{$question->content}}</p>
                     <small >{{$question->created_at}}</small>
                     

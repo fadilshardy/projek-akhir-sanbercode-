@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
-use App\Answer;
 use App\Tag;
 use App\Comment_Question;
 class QuestionController extends Controller
@@ -90,6 +90,25 @@ class QuestionController extends Controller
             $tag_save = Tag::firstOrCreate($tag_single);
             $question_search->tag()->attach($tag_save->id);
         }
+        return redirect('/pertanyaan');
+
+    }
+
+    public function upvote(Question $question)
+    {
+        $question->upvote();
+        return redirect('/pertanyaan');
+    }
+
+    public function downvote(Question $question)
+    {
+        $question->downvote();
+        return redirect('/pertanyaan');
+    }
+
+    public function unvote(Question $question, $vote)
+    {
+        $question->unvote($vote);
         return redirect('/pertanyaan');
 
     }
