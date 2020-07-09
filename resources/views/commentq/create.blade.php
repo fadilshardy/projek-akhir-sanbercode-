@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Komentar</div>
+                {{-- <div class="card-header">Komentar</div> --}}
 
                 <div class="card-body">
                     <form action="/komentar_pertanyaan" method="POST">
@@ -13,10 +13,10 @@
                         <input type="hidden" name="question_id" value="{{$question_id}}">
                         <div class="form-group">
                             <label for="content">Komentar</label>
-                            <input type="text" name="content" class="form-control">
+                            <input type="text" required name="content" class="form-control">
                         </div>
     
-                        <button type="submit" class="btn btn-secondary mt-2">Submit</button>
+                        <button type="submit" class="btn btn-success mt-2">Submit</button>
                     </form>
                 </div>
             </div>
