@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\User;
 class AnswerController extends Controller
 {
     /**
@@ -108,6 +108,17 @@ class AnswerController extends Controller
     public function right($id, Request $request)
     {
         //dd($request->all());
+        $cek = Answer::find($id);
+        $user = User::find($cek->user_id);
+        if($cek->is_right_answer==0){
+            $update_point = User::where('id','=',$cek->user_id)->update([
+                'point'=>$user->point+15
+        ]);
+        }else{
+            $update_point = User::where('id','=',$cek->user_id)->update([
+                'point'=>$user->point-15
+        ]);
+        }
         $answer = Answer::Where('id', '=', $id)->update([
             'is_right_answer' => $request['is_right_answer'],
         ]);
