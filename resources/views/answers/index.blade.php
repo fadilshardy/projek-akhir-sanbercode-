@@ -58,5 +58,16 @@
     <div class="card-body">
         {!!$jawaban->content!!}
         <footer>{{$jawaban->created_at}}</footer>
+        <a href="/komentar_jawaban/create/{{$jawaban->id}}" class="btn btn-sm btn-primary mt-3">Post A Reply</a>
+                    <p class="mt-2 border p-2">
+                        Komentar: <br>
+                        @foreach ($jawaban->comment as $komentar)
+                            
+                        
+                        <button type="button" class="btn btn-sm btn-light">
+                            <span class="badge badge-dark">{{$komentar->user->name}}</span> :{{$komentar->content}}
+                      </button><br>
+                      @endforeach
+                    </p>
     </div>
 </div>

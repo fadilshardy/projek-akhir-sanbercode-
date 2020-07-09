@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="card-body">
-                    <p class='mt-2'>
+                    <p class='border'>
                         @foreach ($commentq as $comment)
                         @include('questions.comment.show')
                         @endforeach
