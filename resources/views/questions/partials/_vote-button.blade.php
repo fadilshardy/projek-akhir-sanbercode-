@@ -1,41 +1,22 @@
 <div class="col-sm-2 summary d-flex align-items-center justify-content-end">
     <div class="col-sm" style="margin-left: -10px">
-        @if ($item->vote_status())
-        <form action="/pertanyaan/{{$item->id}}/unvote/upvote" method="POST">
+        <form action="/pertanyaan/{{$item->id}}/{{$item->vote_status() ? 'unvote/upvote' : 'upvote'}}" method="POST">
             @csrf
-            <button class="btn btn-lg btn-vote bg-success">
+            <button class="btn btn-lg btn-vote {{$item->vote_status() ? 'bg-success' : ''}}">
                 <h5>{{$item->upvote_count()}}</h5>
-                <p>up</p>
+                <p><i class="fa fa-arrow-up"></i></p>
             </button>
         </form>
-        @else
-        <form action="/pertanyaan/{{$item->id}}/upvote" method="POST">
-            @csrf
-            <button class="btn btn-lg btn-vote ">
-                <h5>{{$item->upvote_count()}}</h5>
-                <p>up</p>
-            </button>
-        </form>
-        @endif
     </div>
 
     <div class="col-sm" style="margin-left: 10px">
-        @if ($item->vote_status() === 0)
-        <form action="/pertanyaan/{{$item->id}}/unvote/downvote" method="POST">
+        <form action="/pertanyaan/{{$item->id}}/{{$item->vote_status() === 0 ? 'unvote/downvote ' : 'downvote'}}"
+            method="POST">
             @csrf
-            <button class="btn btn-lg btn-vote bg-danger">
+            <button class="btn btn-lg btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}">
                 <h5>{{$item->downvote_count()}}</h5>
-                <p>up</p>
+                <p><i class="fa fa-arrow-down"></i></p>
             </button>
         </form>
-        @else
-        <form action="/pertanyaan/{{$item->id}}/downvote" method="POST">
-            @csrf
-            <button class="btn btn-lg btn-vote">
-                <h5>{{$item->downvote_count()}}</h5>
-                <p>down</p>
-            </button>
-        </form>
-        @endif
     </div>
 </div>
