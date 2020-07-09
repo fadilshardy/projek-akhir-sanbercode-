@@ -103,4 +103,11 @@ class AnswerController extends Controller
         $answer=Answer::destroy($id);
         return redirect('/pertanyaan/'.$request['question_id']);
     }
+    public function right($id,Request $request){
+        //dd($request->all());
+        $answer= Answer::Where('id','=',$id)->update([
+            'is_right_answer' =>$request['is_right_answer'],
+        ]);
+        return redirect('/pertanyaan/'.$request['question_id']);
+    }
 }

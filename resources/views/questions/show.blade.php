@@ -14,14 +14,15 @@
                     <p>{{$question->content}}</p>
                     <small >{{$question->created_at}}</small>
                     
-                    <blockquote class="blockquote mb-0">
+                    <div class="card-footer text-muted">
                     <p class='mt-2'>Komentar:
                         @foreach ($commentq as $comment)
                 <footer class="blockquote-footer">{{$comment->user->name}}: <cite title="Source Title">{{$comment->content}}</cite></footer>
                 @endforeach
-                <a href="/komentar_pertanyaan/create/{{$question->id}}" class="btn btn-sm btn-success">Reply</a>
+                
                     </p>
-                    </blockquote>
+                </div>
+                <a href="/komentar_pertanyaan/create/{{$question->id}}" class="btn btn-sm btn-success">Reply</a>
                 </div>
             </div>
             
@@ -30,7 +31,10 @@
                         
                     
             <div class="card mt-2 ">
-                <div class="card-header bg-success">Jawaban #{{$jawaban->user->name}} 
+                <div class="card-header 
+                @if ($jawaban->is_right_answer==1)
+                bg-success
+                @endif">Jawaban #{{$jawaban->user->name}} 
 
                 
                     @if ($jawaban->user_id==Auth::user()->id)
@@ -44,6 +48,29 @@
                     </button>
                 </form>
                                     
+                @endif
+                @if ($question->user_id==Auth::user()->id)
+                @if ($jawaban->is_right_answer==0)
+                <form action="/jawaban/{{$jawaban->id}}/right" method="POST" style="display:inline">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="question_id" value="{{$question->id}}">
+                    <input type="hidden" name="is_right_answer" value="1">
+                    <button class="btn btn-success btn-sm">
+                        Mark as Right Answer?
+                    </button>
+                </form>
+                @else
+                <form action="/jawaban/{{$jawaban->id}}/right" method="POST" style="display:inline">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="question_id" value="{{$question->id}}">
+                    <input type="hidden" name="is_right_answer" value="0">
+                    <button class="btn btn-dark btn-sm">
+                        Not Right Answer?
+                    </button>
+                </form>
+                @endif
                 @endif
             </div>
 

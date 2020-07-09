@@ -53,7 +53,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        $answer= Answer::where('question_id','=',$id)->get();
+        $answer= Answer::where('question_id','=',$id)->orderBy('is_right_answer', 'desc')->get();
         $commentq= Comment_Question::where('question_id','=',$id)->get();
         //dd($comment_question);
         return view('questions.show', compact('question','answer','commentq'));
