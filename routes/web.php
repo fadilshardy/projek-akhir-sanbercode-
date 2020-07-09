@@ -25,7 +25,7 @@ Route::get('/forum', 'ForumController@index');
 Route::resource('jawaban', 'AnswerController');
 Route::post('/jawaban/{answer}/upvote', 'AnswerController@upvote');
 Route::post('/jawaban/{answer}/downvote', 'AnswerController@downvote');
-Route::post('/jawaban/{answer}/unvote', 'AnswerController@unvote');
+Route::post('/jawaban/{answer}/unvote/{status}', 'AnswerController@unvote');
 Route::put('jawaban/{id}/right', 'AnswerController@right');
 
 Route::resource('komentar_pertanyaan', 'CommentQuestionController')->except(['create']);

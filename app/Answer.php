@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Answer extends Model
 {
@@ -23,6 +24,7 @@ class Answer extends Model
     {
         return $this->user->id == auth()->id();
     }
+
     public function upvote_count()
     {
         $count = DB::table('vote_answers')
@@ -54,30 +56,50 @@ class Answer extends Model
         }
     }
 
-    public function upvote($upvote = true, $vote = 'upvote')
+    public function upvote()
     {
-        $upvote = $this->votes()->updateOrCreate([
-            'user_id' => auth()->id(),
-        ], [
-            'voted' => $upvote,
-        ]);
-        if ($upvote->wasRecentlyCreated) {
-            $this->point($vote);
+        $question = $this->votes()->where('user_id', auth()->id())
+            ->where('answer_id', $this->id);
+
+        if ($question->exists()) {
+            return $this->unvote('downvote');
+        } else {
+            $this->votes()->updateOrCreate([
+                'user_id' => auth()->id(),
+            ], [
+                'voted' => true,
+            ]);
+            $this->point('upvote');
         }
 
     }
 
     public function downvote()
     {
-        return $this->upvote(false, 'downvote');
-    }
+        $question = $this->votes()->where('user_id', auth()->id())
+            ->where('answer_id', $this->id);
+
+        if ($question->exists()) {
+            return $this->unvote('upvote');
+        } else {
+            $this->votes()->updateOrCreate([
+                'user_id' => auth()->id(),
+            ], [
+                'voted' => false,
+            ]);
+            $this->point('downvote');
+        }}
 
     public function unvote($vote)
     {
         if ($vote == 'upvote') {
-            $this->point($vote);
+            $user = $this->user;
+            $user->point -= 10;
+            $user->save();
         } else {
-            $this->point('downvote');
+            $user = $this->user;
+            $user->point += 1;
+            $user->save();
         }
 
         $this->votes()->where('user_id', auth()->id())->first()->delete();
@@ -85,6 +107,17 @@ class Answer extends Model
 
     public function votes()
     {
-        return $this->hasMany(voteAnswer::class);
+        return $this->hasMany(VoteAnswer::class);
     }
+
+    public function vote_status()
+    {
+        $status = DB::table('vote_answers')
+            ->where('answer_id', $this->id)
+            ->where('user_id', auth()->id())
+            ->value('voted');
+
+        return $status;
+    }
+
 }
