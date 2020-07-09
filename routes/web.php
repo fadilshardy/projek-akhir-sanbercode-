@@ -12,13 +12,13 @@
  */
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
-
+Route::group(['middleware' => 'auth'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/forum', 'ForumController@index');
 
@@ -34,7 +34,12 @@ Route::get('komentar_pertanyaan/create/{id}', 'CommentQuestionController@create'
 Route::resource('komentar_jawaban', 'CommentAnswerController')->except(['create']);
 Route::get('komentar_jawaban/create/{id}', 'CommentAnswerController@create');
 
-Route::resource('pertanyaan', 'QuestionController');
+Route::resource('pertanyaan', 'QuestionController')->except(['index','show']);
+
+Route::resource('profile', 'ProfileController');
 Route::post('/pertanyaan/{question}/upvote', 'QuestionController@upvote');
 Route::post('/pertanyaan/{question}/downvote', 'QuestionController@downvote');
 Route::post('/pertanyaan/{question}/unvote/{status}', 'QuestionController@unvote');
+});
+Route::get('pertanyaan', 'QuestionController@index');
+Route::get('pertanyaan/{id}', 'QuestionController@show');

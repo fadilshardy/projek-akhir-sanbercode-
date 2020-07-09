@@ -3,30 +3,36 @@
 
         <div class="d-flex flex-row align-items-center">
             @if ($jawaban->is_author() != True)
-            <form action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() ? 'unvote/upvote' : 'upvote'}}"
+            @auth<form action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() ? 'unvote/upvote' : 'upvote'}}"
                 method="POST">
                 @csrf
-                <button class="btn btn-sm btn-vote {{$jawaban->vote_status() ? 'bg-success' : ''}}">
+                @endauth
+                <button class="btn btn-sm btn-vote {{$jawaban->vote_status() ? 'bg-success' : ''}}" @guest onclick="alert('Login terlebih dahulu!')" @endguest>
                     {{$jawaban->upvote_count()}}
                     <i class="fa fa-arrow-up"></i>
                 </button>
-            </form>
+                @auth</form>@endauth
 
             <div class="col-sm">
-                <form
-                    action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() === 0 ? 'unvote/downvote ' : 'downvote'}}"
+                @auth
+                
+                <form action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() === 0 ? 'unvote/downvote ' : 'downvote'}}"
                     method="POST">
+                    
                     @csrf
-                    <button class="btn btn-sm btn-vote {{$jawaban->vote_status() === 0 ? 'bg-danger' : ''}}">
+
+                    @endauth
+                    <button class="btn btn-sm btn-vote {{$jawaban->vote_status() === 0 ? 'bg-danger' : ''}}" @guest onclick="alert('Login terlebih dahulu!')" @endguest>
                         {{$jawaban->downvote_count()}}
                         <i class="fa fa-arrow-down"></i>
                     </button>
-                </form>
+                    @auth</form>@endauth
             </div>
             @else
             <div class="col-sm"></div>
             @endif
             <div class="ml-2 mt-1">
+                @auth
                 @if ($question->user_id==Auth::user()->id)
                 <form action="/jawaban/{{$jawaban->id}}/right" method="POST" style="display:inline">
                     @csrf
@@ -38,6 +44,7 @@
                     </button>
                 </form>
                 @endif
+                @endauth
             </div>
         </div>
         {{$jawaban->user->name}}
@@ -58,7 +65,10 @@
     <div class="card-body">
         {!!$jawaban->content!!}
         <footer>{{$jawaban->created_at}}</footer>
+        @auth
         <a href="/komentar_jawaban/create/{{$jawaban->id}}" class="btn btn-sm btn-primary mt-3">Post A Reply</a>
+        @endauth
+
                     <p class="mt-2 border p-2">
                         Komentar: <br>
                         @foreach ($jawaban->comment as $komentar)

@@ -21,9 +21,16 @@
                                 <p class="d-inline-block mb-0">
                                     Ingin membuat pertanyaan baru?
                                 </p>
+                                @auth
                                 <a href="/pertanyaan/create" class="btn btn-sm btn-success ml-2">
                                     <i class="fa fa-edit"></i> Create
                                 </a>
+                                @endauth
+                                @guest
+                                <a href="/login" class="btn btn-sm btn-success ml-2">
+                                    <i class="fa fa-login"></i> Login
+                                </a>
+                                @endguest
                             </div>
                         </div>
 

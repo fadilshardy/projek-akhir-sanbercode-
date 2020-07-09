@@ -4,7 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="/pertanyaan" class="btn btn-secondary btn-sm mb-2"><- Kembali</a>
+            <a href="/pertanyaan" class="btn btn-secondary btn-sm mb-2"><i class="fa fa-arrow-left
+                "></i> Kembali</a>
             <div class="card">
                 <div class="card-header">Pertanyaan oleh #
                     {{$question->user->name}} 
@@ -18,8 +19,9 @@
                     <small>{{$question->created_at}}</small>
                 </div>
             </div>
-            <div class="card mt-4">
-                <div class="card-header">
+            @if (!$commentq->isEmpty())
+            <div class="card mt-1">
+                <div class="card-header bg-secondary text-white">
                     Komentar:
                 </div>
 
@@ -29,21 +31,23 @@
                         @include('questions.comment.show')
                         @endforeach
 
-                    </p>
+                    </p>@auth
                     <form action="/komentar_pertanyaan" method="post">
                         @csrf
                         <input type="hidden" name="question_id" value="{{$question->id}}">
                         <input type="text" class="form-control form-control-sm" name="content"
                             placeholder="Tekan tombol Enter untuk memberi komentar...">
-                    </form>
+                    </form>@endauth
                 </div>
-            </div>
-
+            </div>            
             <hr class="my-2">
+            @endif
             @foreach ($answer as $jawaban)
             @include('answers.index')
             @endforeach
+            @auth
             @include('answers.create')
+            @endauth
         </div>
     </div>
 </div>
