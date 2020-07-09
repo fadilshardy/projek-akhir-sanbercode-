@@ -25,7 +25,7 @@ class CommentQuestionController extends Controller
     public function create($id)
     {
         //
-        return view('commentq.create',['question_id'=>$id]);
+        return view('questions.comment.create',['question_id'=>$id]);
     }
 
     /**
