@@ -28,12 +28,36 @@
                 </div>
 
                 <div class="card-body">
-                  <h3>halo coba </h3>
+                  {{-- start of 1 question  --}}
+                  <div id="question" href="" class="col-sm-12 row">
+                    <div class="col-sm-10">
+                      <h5 class="card-subtitle">Judul artikelnya uhuy</h5><br>
+                      <p class="card-text">pembuat</p>
+                      <div class="tags">
+                        <button class="btn btn-sm btn-info">tag1</button>
+                        <button class="btn btn-sm btn-info">tag2</button>
+                        <button class="btn btn-sm btn-info">tag3</button>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 d-flex align-items-center justify-content-end">
+                      <div class="row">
+                        <div class="col-sm">
+                          <div class="card summary text-center">
+                            <h5>0</h5>
+                            <p>vote</p>
+                          </div>
+                        </div>
+                        <div class="col-sm">
+                          <div class="card summary text-center">
+                            <h5>0</h5>
+                            <p>answer</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <hr>
-                  <h3>halo coba </h3>
-                  <hr>
-                  <h3>halo coba </h3>
-                  <hr>
+                  {{-- end of 1 question --}}
                 </div>
               </div>
             </div>
