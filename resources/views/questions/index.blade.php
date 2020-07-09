@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
                             <div>
-                                <h4 class="mb-0">Kumpulan pertanyaan</h4>
+                                <h4 class="mb-0">Kumpulan Pertanyaan</h4>
                             </div>
 
                             <div>
@@ -34,15 +34,8 @@
                                 <div class="col-sm-10">
                                     <h5 class="card-subtitle">
                                         <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
-                                        {{-- <form action="/pertanyaan/{{$item->id}}/upvote" method="POST"
-                                            style="display:inline">
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm">
-                                                +
-                                            </button>
-                                        </form> --}}
                                     </h5><br>
-                                    <p class="card-text">pembuat: {{$item->user->name}}</p>
+                                    <p class="card-text font-weight-light text-muted">Pembuat: {{$item->user->name}}</p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)
                                         <button class="btn btn-info btn-sm">#{{$tag_question->tag_name}}</button>
@@ -51,15 +44,35 @@
                                 </div>
                                 <div class="col-sm-2 summary d-flex align-items-center justify-content-end">
                                     <div class="col-sm" style="margin-left: -10px">
-                                        <form action="/pertanyaan/{{$item->id}}/upvote" method="POST">
+                                        @if ($item->vote_status())
+                                        <form action="/pertanyaan/{{$item->id}}/unvote/upvote" method="POST">
                                             @csrf
-                                            <button class="btn btn-lg btn-vote">
+                                            <button class="btn btn-lg btn-vote bg-success">
                                                 <h5>{{$item->upvote_count()}}</h5>
                                                 <p>up</p>
                                             </button>
                                         </form>
+                                        @else
+                                        <form action="/pertanyaan/{{$item->id}}/upvote" method="POST">
+                                            @csrf
+                                            <button class="btn btn-lg btn-vote ">
+                                                <h5>{{$item->upvote_count()}}</h5>
+                                                <p>up</p>
+                                            </button>
+                                        </form>
+                                        @endif
                                     </div>
+
                                     <div class="col-sm" style="margin-left: 10px">
+                                        @if ($item->vote_status() === 0)
+                                        <form action="/pertanyaan/{{$item->id}}/unvote/downvote" method="POST">
+                                            @csrf
+                                            <button class="btn btn-lg btn-vote bg-danger">
+                                                <h5>{{$item->downvote_count()}}</h5>
+                                                <p>up</p>
+                                            </button>
+                                        </form>
+                                        @else
                                         <form action="/pertanyaan/{{$item->id}}/downvote" method="POST">
                                             @csrf
                                             <button class="btn btn-lg btn-vote">
@@ -67,9 +80,10 @@
                                                 <p>down</p>
                                             </button>
                                         </form>
-
+                                        @endif
                                     </div>
                                 </div>
+
                             </div>
                             <hr>
                             @endforeach

@@ -34,4 +34,4 @@ Route::get('komentar_pertanyaan/create/{id}', 'CommentQuestionController@create'
 Route::resource('pertanyaan', 'QuestionController');
 Route::post('/pertanyaan/{question}/upvote', 'QuestionController@upvote');
 Route::post('/pertanyaan/{question}/downvote', 'QuestionController@downvote');
-Route::post('/pertanyaan/{question}/unvote', 'QuestionController@unvote');
+Route::post('/pertanyaan/{question}/unvote/{status}', 'QuestionController@unvote');
