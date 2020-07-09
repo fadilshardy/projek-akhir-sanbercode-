@@ -3,20 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Answer;
-Use Illuminate\Support\Facades\Auth;
-class AnswerController extends Controller
+use App\Comment_Question;
+use Illuminate\Support\Facades\Auth;
+class CommentQuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         //
-        $answer = Answer::Where('question_id','=',$id)->get();
-        return view('question.index',compact('answer'));
     }
 
     /**
@@ -24,10 +22,10 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
-        
+        return view('commentq.create',['question_id'=>$id]);
     }
 
     /**
@@ -38,12 +36,14 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
         //
-        $answer = Answer::create([
-            'content'=>$request['content'],
-            'question_id'=>$request['question_id'],
-            'user_id' =>Auth::user()->id
+        $validated = $request->validate([
+            'content' => 'required|max:255',
+        ]);
+        $comment = Comment_Question::create([
+             'user_id' => Auth::user()->id,
+             'question_id' => $request['question_id'],
+             'content' => $validated['content'],
         ]);
         return redirect('/pertanyaan/'.$request['question_id']);
     }
@@ -57,7 +57,6 @@ class AnswerController extends Controller
     public function show($id)
     {
         //
-        $answer = Answer::find($id);
     }
 
     /**
@@ -69,8 +68,6 @@ class AnswerController extends Controller
     public function edit($id)
     {
         //
-        $answer = Answer::find($id);
-        return view('answers.edit',compact('answer'));
     }
 
     /**
@@ -83,11 +80,6 @@ class AnswerController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $answer=Answer::Where('id','=',$id)->update([
-            'content' =>$request['content'],
-        ]);
-        //dd($request['question_id']);
-        return redirect('/pertanyaan/'.$request['question_id']);
     }
 
     /**
@@ -96,18 +88,8 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id,Request $request)
+    public function destroy($id)
     {
         //
-        //dd($request->all());
-        $answer=Answer::destroy($id);
-        return redirect('/pertanyaan/'.$request['question_id']);
-    }
-    public function right($id,Request $request){
-        //dd($request->all());
-        $answer= Answer::Where('id','=',$id)->update([
-            'is_right_answer' =>$request['is_right_answer'],
-        ]);
-        return redirect('/pertanyaan/'.$request['question_id']);
     }
 }

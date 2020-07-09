@@ -32,12 +32,21 @@
                             {{-- start of 1 question  --}}
                             <div id="question" href="" class="col-sm-12 row">
                                 <div class="col-sm-10">
-                                    <h5 class="card-subtitle">{{$item->title}}</h5><br>
+                                    <h5 class="card-subtitle">
+<a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
+<form action="/pertanyaan/{{$item->id}}/upvote" method="POST"
+    style="display:inline">
+    @csrf
+    <button class="btn btn-danger btn-sm">
+        +
+    </button>
+</form>
+                                    </h5><br>
                                     <p class="card-text">pembuat: {{$item->user->name}}</p>
                                     <div class="tags">
-                                        <button class="btn btn-sm btn-info">tag1</button>
-                                        <button class="btn btn-sm btn-info">tag2</button>
-                                        <button class="btn btn-sm btn-info">tag3</button>
+                                        @foreach ($item->tag as $tag_question)
+                    <button class="btn btn-info btn-sm">#{{$tag_question->tag_name}}</button>
+                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-sm-2 summary d-flex align-items-center justify-content-end">
@@ -46,6 +55,7 @@
                                             <h5>{{$item->upvote_count()}}</h5>
                                             <p>up</p>
                                         </div>
+                                        
                                     </div>
                                     <div class="col-sm">
                                         <div class="card  text-center">
