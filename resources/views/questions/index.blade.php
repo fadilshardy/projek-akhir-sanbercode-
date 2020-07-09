@@ -33,35 +33,41 @@
                             <div id="question" href="" class="col-sm-12 row">
                                 <div class="col-sm-10">
                                     <h5 class="card-subtitle">
-<a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
-<form action="/pertanyaan/{{$item->id}}/upvote" method="POST"
-    style="display:inline">
-    @csrf
-    <button class="btn btn-danger btn-sm">
-        +
-    </button>
-</form>
+                                        <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
+                                        {{-- <form action="/pertanyaan/{{$item->id}}/upvote" method="POST"
+                                            style="display:inline">
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm">
+                                                +
+                                            </button>
+                                        </form> --}}
                                     </h5><br>
                                     <p class="card-text">pembuat: {{$item->user->name}}</p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)
-                    <button class="btn btn-info btn-sm">#{{$tag_question->tag_name}}</button>
-                        @endforeach
+                                        <button class="btn btn-info btn-sm">#{{$tag_question->tag_name}}</button>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-sm-2 summary d-flex align-items-center justify-content-end">
-                                    <div class="col-sm">
-                                        <div class="card  text-center">
-                                            <h5>{{$item->upvote_count()}}</h5>
-                                            <p>up</p>
-                                        </div>
-                                        
+                                    <div class="col-sm" style="margin-left: -10px">
+                                        <form action="/pertanyaan/{{$item->id}}/upvote" method="POST">
+                                            @csrf
+                                            <button class="btn btn-lg btn-vote">
+                                                <h5>{{$item->upvote_count()}}</h5>
+                                                <p>up</p>
+                                            </button>
+                                        </form>
                                     </div>
-                                    <div class="col-sm">
-                                        <div class="card  text-center">
-                                            <h5>{{$item->downvote_count()}}</h5>
-                                            <p>down</p>
-                                        </div>
+                                    <div class="col-sm" style="margin-left: 10px">
+                                        <form action="/pertanyaan/{{$item->id}}/downvote" method="POST">
+                                            @csrf
+                                            <button class="btn btn-lg btn-vote">
+                                                <h5>{{$item->downvote_count()}}</h5>
+                                                <p>down</p>
+                                            </button>
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>

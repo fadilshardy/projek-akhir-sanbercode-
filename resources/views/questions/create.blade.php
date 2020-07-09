@@ -12,20 +12,20 @@
                         @csrf
                         <div class="form-group">
                             <label for="title">Judul</label>
-                            <input type="text" class="form-control" name="title" placeholder="Isi title">
+                            <input required type="text" class="form-control" name="title" placeholder="Isi title">
                         </div>
 
                         <div class="form-group">
                             <label for="content">Isi</label>
-                            <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
+                            <textarea required name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="title">Tag</label>
-                            <input type="text" class="form-control" name="tags" placeholder="tags pisahkan dengan koma">
+                            <input required type="text" class="form-control" name="tags" placeholder="tags pisahkan dengan koma">
                         </div>
 
-                        <button type="submit" class="btn btn-secondary mt-2">Submit</button>
+                        <button type="submit" class="btn btn-success mt-2">Submit</button>
                     </form>
                 </div>
             </div>

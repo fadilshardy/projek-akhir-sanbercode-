@@ -46,7 +46,7 @@ class Question extends Model
             $user->save();
         } else if ($vote == 'downvote') {
             $user = $this->user;
-            $user->point -= 10;
+            $user->point -= 1;
             $user->save();
         }
     }
