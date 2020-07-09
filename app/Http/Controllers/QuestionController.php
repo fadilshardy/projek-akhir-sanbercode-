@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
-use App\Answer;
+
 class QuestionController extends Controller
 {
     public function index()
@@ -38,9 +39,9 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        $answer= Answer::where('question_id','=',$id)->get();
+        $answer = Answer::where('question_id', '=', $id)->get();
         //dd($answer);
-        return view('questions.show', compact('question','answer'));
+        return view('questions.show', compact('question', 'answer'));
     }
 
     public function edit($id)
@@ -61,6 +62,25 @@ class QuestionController extends Controller
             'title' => $validated['title'],
             'content' => $validated['content'],
         ]);
+        return redirect('/pertanyaan');
+
+    }
+
+    public function upvote(Question $question)
+    {
+        $question->upvote();
+        return redirect('/pertanyaan');
+    }
+
+    public function downvote(Question $question)
+    {
+        $question->downvote();
+        return redirect('/pertanyaan');
+    }
+
+    public function unvote(Question $question, $vote)
+    {
+        $question->unvote($vote);
         return redirect('/pertanyaan');
 
     }

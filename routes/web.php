@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/forum', 'ForumController@index');
+
 Route::resource('jawaban', 'AnswerController');
 
 Route::resource('pertanyaan', 'QuestionController');
+Route::post('/pertanyaan/{question}/upvote', 'QuestionController@upvote');
+Route::post('/pertanyaan/{question}/downvote', 'QuestionController@downvote');
+Route::post('/pertanyaan/{question}/unvote', 'QuestionController@unvote');
