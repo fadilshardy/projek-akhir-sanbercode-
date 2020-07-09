@@ -15,7 +15,7 @@
                             <label for="content">Komentar</label>
                             <input type="text" required name="content" class="form-control">
                         </div>
-    
+
                         <button type="submit" class="btn btn-success mt-2">Submit</button>
                     </form>
                 </div>

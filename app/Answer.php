@@ -19,6 +19,10 @@ class Answer extends Model
         return $this->belongsTo('\App\User');
     }
 
+    public function is_author()
+    {
+        return $this->user->id == auth()->id();
+    }
     public function upvote_count()
     {
         $count = DB::table('vote_answers')
