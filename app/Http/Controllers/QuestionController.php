@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
-use App\Question;
-use Illuminate\Http\Request;
-use App\Tag;
 use App\Comment_Question;
+use App\Question;
+use App\Tag;
 use App\Comment_Answer;
+use Illuminate\Http\Request;
+
 class QuestionController extends Controller
 {
     public function index()
@@ -15,10 +16,10 @@ class QuestionController extends Controller
         $question = Question::get();
 
         $question = $question->sortByDesc(function ($question) {
-                    return $question->votes->sum('voted');
-                });
+            return $question->votes->sum('voted');
+        });
         return view('questions.index', [
-             'questions' => $question,
+            'questions' => $question,
             // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
         ]);
     }
@@ -34,22 +35,22 @@ class QuestionController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|max:255',
         ]);
-        
-         $question = Question::create([
-             'user_id' => auth()->id(),
-             'title' => $validated['title'],
-             'content' => $validated['content'],
 
-         ]);
+        $question = Question::create([
+            'user_id' => auth()->id(),
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+
+        ]);
         //create tag Baru
-        $tags = explode(',',$request->tags);
+        $tags = explode(',', $request->tags);
         $tag_multi = [];
-        foreach($tags as$tag){
+        foreach ($tags as $tag) {
             $tagAss['tag_name'] = $tag;
             $tag_multi[] = $tagAss;
         }
         //dd($tag_multi);
-        foreach ($tag_multi as $tag_single){
+        foreach ($tag_multi as $tag_single) {
             $tag_save = Tag::firstOrCreate($tag_single);
             $question->tag()->attach($tag_save->id);
         }
@@ -91,14 +92,14 @@ class QuestionController extends Controller
         ]);
         $question_search = Question::find($id);
         $question_search->tag()->detach();
-        $tags = explode(',',$request->tags);
+        $tags = explode(',', $request->tags);
         $tag_multi = [];
-        foreach($tags as$tag){
+        foreach ($tags as $tag) {
             $tagAss['tag_name'] = $tag;
             $tag_multi[] = $tagAss;
         }
         //dd($tag_multi);
-        foreach ($tag_multi as $tag_single){
+        foreach ($tag_multi as $tag_single) {
             $tag_save = Tag::firstOrCreate($tag_single);
             $question_search->tag()->attach($tag_save->id);
         }
@@ -118,9 +119,9 @@ class QuestionController extends Controller
         return redirect('/pertanyaan');
     }
 
-    public function unvote(Question $question, $vote)
+    public function unvote(Question $question, $status)
     {
-        $question->unvote($vote);
+        $question->unvote($status);
         return redirect('/pertanyaan');
 
     }
