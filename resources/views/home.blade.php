@@ -15,9 +15,18 @@
                     @endif
 
                     You are logged in!
+                    <br>
+                    <br>
+                    <a href="/forum" class="btn btn-sm btn-info">Go to forum</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+{{-- 
+@push('scripts')
+    <script>
+        setTimeout(function(){ {{ route('forum')}} }); }, 1500);
+    </script>
+@endpush --}}
