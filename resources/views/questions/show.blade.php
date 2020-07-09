@@ -5,18 +5,27 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Pertanyaan #{{$question->user->name}} </div>
+                <div class="card-header">Pertanyaan #{{$question->user->name}} @foreach ($question->tag as $tag_question)
+                    <button class="btn btn-primary btn-sm float-right mr-1">#{{$tag_question->tag_name}}</button>
+                        @endforeach</div>
 
                 <div class="card-body">
                     <h1>{{$question->title}}</h1>
                     <p>{{$question->content}}</p>
-                    <footer >{{$question->created_at}}</footer>
-                    @foreach ($question->tag as $tag_question)
-                <button class="btn btn-primary btn-sm float-right mr-1">#{{$tag_question->tag_name}}</button>
-                    @endforeach
+                    <small >{{$question->created_at}}</small>
                     
+                    <blockquote class="blockquote mb-0">
+                    <p class='mt-2'>Komentar:
+                        @foreach ($commentq as $comment)
+                <footer class="blockquote-footer">{{$comment->user->name}}: <cite title="Source Title">{{$comment->content}}</cite></footer>
+                @endforeach
+                <a href="/komentar_pertanyaan/create/{{$question->id}}" class="btn btn-sm btn-success">Reply</a>
+                    </p>
+                    </blockquote>
                 </div>
             </div>
+            
+
             @foreach ($answer as $jawaban)
                         
                     
@@ -44,6 +53,8 @@
                 </div>
             </div>
             @endforeach
+            <div class="card mt-2 ">
+                <div class="card-header ">Jawaban Anda </div>
             <div class="card-body">
             <form action="/jawaban" method="POST">
                     @csrf
@@ -55,6 +66,7 @@
 
                     <button type="submit" class="btn btn-secondary mt-2">Submit</button>
                 </form>
+            </div>
             </div>
         </div>
     </div>

@@ -21,5 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('jawaban', 'AnswerController');
+Route::resource('komentar_pertanyaan', 'CommentQuestionController')->except(['create']);
+Route::get('komentar_pertanyaan/create/{id}', 'CommentQuestionController@create');
 
 Route::resource('pertanyaan', 'QuestionController');

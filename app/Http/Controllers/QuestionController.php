@@ -6,6 +6,7 @@ use App\Question;
 use Illuminate\Http\Request;
 use App\Answer;
 use App\Tag;
+use App\Comment_Question;
 class QuestionController extends Controller
 {
     public function index()
@@ -53,8 +54,9 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
         $answer= Answer::where('question_id','=',$id)->get();
-        //dd($answer);
-        return view('questions.show', compact('question','answer'));
+        $commentq= Comment_Question::where('question_id','=',$id)->get();
+        //dd($comment_question);
+        return view('questions.show', compact('question','answer','commentq'));
     }
 
     public function edit($id)
