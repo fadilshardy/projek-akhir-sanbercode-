@@ -23,6 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/forum', 'ForumController@index');
 
 Route::resource('jawaban', 'AnswerController');
+Route::post('/jawaban/{answer}/upvote', 'AnswerController@upvote');
+Route::post('/jawaban/{answer}/downvote', 'AnswerController@downvote');
+Route::post('/jawaban/{answer}/unvote', 'AnswerController@unvote');
 
 Route::resource('pertanyaan', 'QuestionController');
 Route::post('/pertanyaan/{question}/upvote', 'QuestionController@upvote');
