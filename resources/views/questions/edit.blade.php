@@ -22,7 +22,11 @@
                             <textarea name="content" class="form-control" id="content" cols="30"
                                 rows="10">{{$question->content}}</textarea>
                         </div>
-
+                        <div class="form-group">
+                            <label for="title">Tag</label>
+                            
+                        <input type="text" class="form-control" name="tags" value="@foreach ($question->tag as $tag){{$tag->tag_name}},@endforeach" placeholder="tags pisahkan dengan koma">
+                        </div>
                         <button type="submit" class="btn btn-secondary mt-2">Submit</button>
                     </form>
                 </div>

@@ -5,11 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Pertanyaan #{{$question->user->name}}</div>
+                <div class="card-header">Pertanyaan #{{$question->user->name}} </div>
 
                 <div class="card-body">
                     <h1>{{$question->title}}</h1>
                     <p>{{$question->content}}</p>
+                    <footer >{{$question->created_at}}</footer>
+                    @foreach ($question->tag as $tag_question)
+                <button class="btn btn-primary btn-sm float-right mr-1">#{{$tag_question->tag_name}}</button>
+                    @endforeach
                     
                 </div>
             </div>
@@ -36,7 +40,7 @@
 
                 <div class="card-body">
                     {{$jawaban->content}}
-                    
+                    <footer >{{$jawaban->created_at}}</footer>
                 </div>
             </div>
             @endforeach
