@@ -7,6 +7,7 @@ use App\Question;
 use Illuminate\Http\Request;
 use App\Tag;
 use App\Comment_Question;
+use App\Comment_Answer;
 class QuestionController extends Controller
 {
     public function index()
@@ -61,7 +62,12 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $answer= Answer::where('question_id','=',$id)->orderBy('is_right_answer', 'desc')->get();
         $commentq= Comment_Question::where('question_id','=',$id)->get();
-        //dd($comment_question);
+        $commenta=[];
+        //dd($answer[0]->comment);
+        foreach ($answer as $key => $jawaban){
+        $answer[$key]->comment= Comment_Answer::where('answer_id','=',$jawaban->id)->get();
+        }
+        //dd($jawaban->id);
         return view('questions.show', compact('question','answer','commentq'));
     }
 

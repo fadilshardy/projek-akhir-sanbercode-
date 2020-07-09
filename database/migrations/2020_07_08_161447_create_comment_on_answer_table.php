@@ -15,6 +15,7 @@ class CreateCommentOnAnswerTable extends Migration
     {
         Schema::create('comment_on_answer', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('content');
             $table->unsignedBigInteger('answer_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('answer_id')->references('id')->on('answers')->onDelete('cascade');

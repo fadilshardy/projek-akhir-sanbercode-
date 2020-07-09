@@ -31,6 +31,9 @@ Route::put('jawaban/{id}/right', 'AnswerController@right');
 Route::resource('komentar_pertanyaan', 'CommentQuestionController')->except(['create']);
 Route::get('komentar_pertanyaan/create/{id}', 'CommentQuestionController@create');
 
+Route::resource('komentar_jawaban', 'CommentAnswerController')->except(['create']);
+Route::get('komentar_jawaban/create/{id}', 'CommentAnswerController@create');
+
 Route::resource('pertanyaan', 'QuestionController');
 Route::post('/pertanyaan/{question}/upvote', 'QuestionController@upvote');
 Route::post('/pertanyaan/{question}/downvote', 'QuestionController@downvote');

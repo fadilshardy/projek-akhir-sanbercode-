@@ -4,8 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <a href="/pertanyaan" class="btn btn-secondary btn-sm mb-2"><- Kembali</a>
             <div class="card">
-                <div class="card-header">Pertanyaan oleh #{{$question->user->name}} @foreach ($question->tag as
+                <div class="card-header">Pertanyaan oleh #
+                    {{$question->user->name}} 
+                    @foreach ($question->tag as
                     $tag_question)
                     <button class="btn btn-info btn-sm float-right mr-1">#{{$tag_question->tag_name}}</button>
                     @endforeach</div>
@@ -97,6 +100,17 @@
                 <div class="card-body">
                     {!!$jawaban->content!!}
                     <footer>{{$jawaban->created_at}}</footer>
+                    <a href="/komentar_jawaban/create/{{$jawaban->id}}" class="btn btn-sm btn-primary mt-3">Post A Reply</a>
+                    <p class="mt-2 border p-2">
+                        Komentar: <br>
+                        @foreach ($jawaban->comment as $komentar)
+                            
+                        
+                        <button type="button" class="btn btn-sm btn-light">
+                            <span class="badge badge-dark">{{$komentar->user->name}}</span> :{{$komentar->content}}
+                      </button><br>
+                      @endforeach
+                    </p>
                 </div>
             </div>
             @endforeach

@@ -18,7 +18,9 @@ class Answer extends Model
     {
         return $this->belongsTo('\App\User');
     }
-
+    public function comment_on_answer(){
+        return $this->hasMany('App\Comment_Answer');
+    }
     public function upvote_count()
     {
         $count = DB::table('vote_answers')
