@@ -7,25 +7,35 @@ use App\Comment_Answer;
 use App\Comment_Question;
 use App\Question;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
     public function index()
     {
-
+        
         $question = Question::withCount('answers')->get();
         $question = $question->sortByDesc(function ($question) {
-            if($question->votes->sum('voted')==0){
-                return $question->votes->count('voted')*(-1);
-            }else{
-                return $question->votes->count('voted')*(1);
-            };
+            $downvote = 0;
+        $upvote = 0;
+            foreach ($question->votes as $vote){
+            if($vote->voted==0){
+            $downvote += 1;
+                
+             }else{
+            $upvote +=  1;
+             }
+            }
+            //dd($upvote-$downvote);
+            return $upvote-$downvote;
         });
+        $user = User::orderBy('point','desc')->take(5)->get();
         $tag = Tag::all();
         return view('questions.index', [
             'questions' => $question,
             'tag'=>$tag,
+            'user'=>$user,
             // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
         ]);
     }
@@ -39,7 +49,7 @@ class QuestionController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
-            'content' => 'required|max:255',
+            'content' => 'required',
         ]);
 
         $question = Question::create([
@@ -49,7 +59,7 @@ class QuestionController extends Controller
 
         ]);
         //create tag Baru
-        $tags = explode(',', $request->tags);
+        $tags = explode(',', strtolower($request->tags));
         $tag_multi = [];
         foreach ($tags as $tag) {
             $tagAss['tag_name'] = $tag;
@@ -69,11 +79,18 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $answer = Answer::where('question_id', '=', $id)->get();
         $answer = $answer->sortByDesc(function ($answer) {
-            if($answer->votes->sum('voted')==0){
-                return $answer->votes->count('voted')*(-1);
-            }else{
-                return $answer->votes->count('voted')*(1);
-            };
+            $downvote = 0;
+        $upvote = 0;
+            foreach ($answer->votes as $vote){
+            if($vote->voted==0){
+            $downvote += 1;
+                
+             }else{
+            $upvote +=  1;
+             }
+            }
+            //dd($upvote-$downvote);
+            return $upvote-$downvote;
             
             
         })->sortBy('Case when voted is null then 1 else 0 end')->sortByDesc('is_right_answer');
