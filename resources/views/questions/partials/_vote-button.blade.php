@@ -4,8 +4,8 @@
             @if($item->is_author())
             <button class="btn btn-lg btn-vote {{$item->vote_status() ? 'bg-success' : ''}}" @guest
                 onclick="alert('Login terlebih dahulu!')" @endguest>
-                <h5>{{$item->upvote_count()}}</h5>
-                <p><i class="fa fa-arrow-up"></i></p>
+                <h5 >{{$item->upvote_count()}}</h5>
+                <div class="mt-2 arrow-up"></div>
             </button>
             @else
             @auth
@@ -16,7 +16,7 @@
                 <button class="btn btn-lg btn-vote {{$item->vote_status() ? 'bg-success' : ''}}" @guest
                     onclick="alert('Login terlebih dahulu!')" @endguest>
                     <h5>{{$item->upvote_count()}}</h5>
-                    <p><i class="fa fa-arrow-up"></i></p>
+                    <div class="mt-2 arrow-up"></div>
                 </button>
                 @auth
             </form>
@@ -28,7 +28,7 @@
             @if($item->is_author())
             <button class="btn btn-lg btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}">
                 <h5>{{$item->downvote_count()}}</h5>
-                <p><i class="fa fa-arrow-down"></i></p>
+                <div class="mb-2 arrow-down"></div>
             </button>
             @else
             @auth
@@ -39,12 +39,17 @@
                 <button class="btn btn-lg btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}" @guest
                     onclick="alert('Login terlebih dahulu!')" @endguest>
                     <h5>{{$item->downvote_count()}}</h5>
-                    <p><i class="fa fa-arrow-down"></i></p>
+                    <div class="mb-2 arrow-down"></div>
                 </button>
                 @auth
             </form>
             @endauth
             @endif
+        </div>
+
+        <div class="col-sm-12 text-center">
+            <button class="btn btn-sm btn-success mt-1">Total answers: {{$item->answers_count}}</button>
+
         </div>
     </div>
 </div>

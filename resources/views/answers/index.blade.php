@@ -6,7 +6,19 @@
                 <span style="font-size: 12px">answered at {{$jawaban->created_at}}</span>
             </div>
 
-            <div class="col-sm-12 col-lg-8 text-lg-right">
+            <div class="col-sm-12 col-lg-8 my-auto text-lg-right">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown"><i
+                            class="fa fa-cog"></i>
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu animate slideIn">
+                        <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
+                        <li><a href="#"><i class="fa fa-trash-alt"></i> Hapus</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            {{-- <div class="col-sm-12 col-lg-8 my-auto text-lg-right">
                 @if($jawaban->is_author() )
                 <button class="btn btn-sm btn-vote {{$jawaban->vote_status() ? 'bg-success' : ''}}">
                     {{$jawaban->upvote_count()}}
@@ -48,47 +60,51 @@
                     @auth
                 </form>
                 @endauth
-            
-            @endif
 
-            @if ($jawaban->is_author())
-            <a href="/jawaban/{{$jawaban->id}}/edit" class="btn btn-sm btn-warning">Edit</a>
-            <form class="d-inline-block" action="/jawaban/{{$jawaban->id}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" name="question_id" value="{{$question->id}}">
-                <button class="btn btn-danger btn-sm">
-                    Delete
-                </button>
-            </form>
-            @endif
-            
-            @auth
-            @if ($question->user_id==Auth::user()->id)
-            <form class="d-inline-block" action="/jawaban/{{$jawaban->id}}/right" method="POST">
-                @csrf
-                @method('PUT')
-                <input type="hidden" name="question_id" value="{{$question->id}}">
-                <input type="hidden" name="is_right_answer" value="{{$jawaban->is_right_answer ? 0 : 1}}">
-                <button class="btn {{$jawaban->is_right_answer ? 'btn-dark' : 'btn-success'}} btn-sm">
-                    {{$jawaban->is_right_answer ? 'Not Right Answer?' : 'Mark as Right Answer?'}}
-                </button>
-            </form>
-            @endif
-            @endauth
+                @endif
+
+                @if ($jawaban->is_author())
+                <a href="/jawaban/{{$jawaban->id}}/edit" class="btn btn-sm btn-warning">Edit</a>
+                <form class="d-inline-block" action="/jawaban/{{$jawaban->id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="question_id" value="{{$question->id}}">
+                    <button class="btn btn-danger btn-sm">
+                        Delete
+                    </button>
+                </form>
+                @endif
+
+                @auth
+                @if ($question->user_id==Auth::user()->id)
+                <form class="d-inline-block" action="/jawaban/{{$jawaban->id}}/right" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="question_id" value="{{$question->id}}">
+                    <input type="hidden" name="is_right_answer" value="{{$jawaban->is_right_answer ? 0 : 1}}">
+                    <button class="btn {{$jawaban->is_right_answer ? 'btn-dark' : 'btn-success'}} btn-sm">
+                        {{$jawaban->is_right_answer ? 'Not Right Answer?' : 'Mark as Right Answer?'}}
+                    </button>
+                </form>
+                @endif
+                @endauth
+            </div> --}}
         </div>
     </div>
-</div>
 
-<div class="card-body">
-    {!!$jawaban->content!!}
-    {{-- @auth
+    <div class="card-body">
+        {!!$jawaban->content!!}
+        {{-- @auth
     <a href="/komentar_jawaban/create/{{$jawaban->id}}" class="btn btn-sm btn-primary mt-3">Post A Reply</a>
-    @endauth --}}
+        @endauth --}}
         <hr>
-    <p >
-        Komentar Jawaban: <br>
-        @foreach ($jawaban->comment as $komentar)
+        <p>
+            @if ($jawaban->comment->isEmpty())
+            <small><em>Belum terdapat komentar</em></small>
+            @else
+            <small class="font-weight-bold">komentar:</small> <br>
+            @endif
+            @foreach ($jawaban->comment as $komentar)
 
 
         <button type="button" class="btn btn-sm btn-light">
@@ -100,9 +116,9 @@
             @csrf
             <input type="hidden" name="answer_id" value="
             @auth {{$jawaban->id}} @endauth">
-            <input type="text" class="form-control form-control-sm mt-2" name="content"
-                placeholder="Tekan tombol Enter untuk memberi komentar pada jawaban ini...">
-        </form>
-    </p>
-</div>
+                <input type="text" class="form-control form-control-sm mt-2" name="content"
+                    placeholder="Tambahkan komentar untuk jawaban ini . . .">
+            </form>
+        </p>
+    </div>
 </div>

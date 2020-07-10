@@ -161,6 +161,7 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         $question->delete();
+        return redirect('/pertanyaan');
     }
     public function tag($id)
     {   $tag_search = Tag::find($id);
