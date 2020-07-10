@@ -115,7 +115,7 @@ class QuestionController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
-            'content' => 'required|max:255',
+            'content' => 'required',
         ]);
 
         $question = Question::where('id', $id)->update([
@@ -135,7 +135,7 @@ class QuestionController extends Controller
             $tag_save = Tag::firstOrCreate($tag_single);
             $question_search->tag()->attach($tag_save->id);
         }
-        return redirect('/pertanyaan');
+        return redirect('/pertanyaan/'.$id);
 
     }
 
@@ -158,11 +158,13 @@ class QuestionController extends Controller
 
     }
 
-    public function destroy(Question $question)
+    public function destroy($id,Request $request)
     {
-        $question->delete();
+        //dd($id);
+        $delete = Question::where('id','=',$id)->delete();
         return redirect('/pertanyaan');
     }
+    
     public function tag($id)
     {   $tag_search = Tag::find($id);
         $title=$tag_search->tag_name;

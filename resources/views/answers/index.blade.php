@@ -3,7 +3,12 @@
         <div class="row">
             <div class="col-sm-12 col-lg-4 my-1">
                 <a href="/profile/{{$jawaban->user->id}}" class="{{$jawaban->is_right_answer ? 'text-light' : ''}}">{{$jawaban->user->name}}</a><br>
-                <span style="font-size: 12px">answered at {{$jawaban->created_at}}</span>
+                <span style="font-size: 12px" class="text-secondary">                
+                    @if ($jawaban->created_at==$jawaban->updated_at)
+                    Posted {{$jawaban->created_at->diffForHumans()}}    
+                    @else
+                    Updated {{$jawaban->updated_at->diffForHumans()}}
+                    @endif</span>
             </div>
 
             <div class="col-sm-12 col-lg-8 my-auto text-lg-right">

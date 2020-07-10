@@ -13,7 +13,9 @@
                             Pertanyaan oleh # {{$question->user->name}} <br>
                             @if ($question->is_author())
                             <a href="{{$question->id}}/edit" class="btn btn-xs btn-warning">Edit</a>
+                             
                             <button data-toggle="modal" data-target="#myModal" class="btn btn-xs btn-danger">Delete</button>
+                            
                             @endif
                         </div>
                         <div class="col-sm-12 col-md-6 my-auto text-sm-right">
@@ -29,7 +31,15 @@
                         komentar 
                     --}}
                     <h1>{{$question->title}} </h1>
-                    <small style="border-bottom: 1px solid grey">{{$question->created_at}}</small>
+                    <small style="border-bottom: 1px solid grey" class="text-secondary italic">
+                        @if ($question->created_at==$question->updated_at)
+                        Posted {{$question->created_at->diffForHumans()}}    
+                        @else
+                        Updated {{$question->updated_at->diffForHumans()}}
+                        @endif
+                        
+                    
+                    </small>
                     <p class="mt-2">{!!$question->content!!}</p>
                     <hr>
                     @if ($commentq->isEmpty())
@@ -119,10 +129,13 @@
           <p>Yakin ingin menghapus pertanyaan ini?</p>
         </div>
         <div class="modal-footer">
-            <form class="d-inline-block" action="{{$question->id}}/delete" method="POST">
+            <form class="d-inline-block" action="/pertanyaan/{{$question->id}}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-danger">Hapus</button>
+                
+                <button data-toggle="modal" data-target="#myModal" class="btn btn-danger">
+                    Hapus
+                </button>
             </form>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>

@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label for="title">Tag</label>
                             
-                        <input type="text" class="form-control" name="tags" value="@foreach ($question->tag as $tag){{$tag->tag_name}},@endforeach" placeholder="tags pisahkan dengan koma">
+                        <input type="text" class="form-control" name="tags" value="@foreach ($question->tag as $key=>$tag){{($key>0)?',':''}}{{$tag->tag_name}}@endforeach" placeholder="tags pisahkan dengan koma">
                         </div>
                         <button type="submit" class="btn btn-success mt-2">Submit</button>
                     </form>
