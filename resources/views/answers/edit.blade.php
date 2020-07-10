@@ -18,7 +18,7 @@
                                 rows="10">{{$answer->content}}</textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-secondary mt-2">Submit</button>
+                        <button type="submit" class="btn btn-success mt-2">Submit</button>
                     </form>
                 </div>
             </div>

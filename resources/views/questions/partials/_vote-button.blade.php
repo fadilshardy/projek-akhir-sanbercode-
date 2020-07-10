@@ -1,8 +1,8 @@
-<div class="col-sm-3 summary d-flex align-items-center justify-content-start text-right">
+<div class="col-sm-12 col-md-3 summary">
     <div class="row">
-        <div class="col-sm mr-1">
+        <div class="col-sm-6">
             @auth
-            <form action="/pertanyaan/{{$item->id}}/{{$item->vote_status() ? 'unvote/upvote' : 'upvote'}}"
+            <form class="text-lg-right my-1" action="/pertanyaan/{{$item->id}}/{{$item->vote_status() ? 'unvote/upvote' : 'upvote'}}"
                 method="POST">
                 @csrf
                 @endauth
@@ -18,9 +18,9 @@
 
         </div>
 
-        <div class="col-sm">
+        <div class="col-sm-6">
             @auth
-            <form action="/pertanyaan/{{$item->id}}/{{$item->vote_status() === 0 ? 'unvote/downvote ' : 'downvote'}}"
+            <form class="text-lg-left my-1" action="/pertanyaan/{{$item->id}}/{{$item->vote_status() === 0 ? 'unvote/downvote ' : 'downvote'}}"
                 method="POST">
                 @csrf
                 @endauth

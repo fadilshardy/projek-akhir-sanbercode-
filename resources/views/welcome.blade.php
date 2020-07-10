@@ -66,6 +66,12 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            @media (max-width: 768px) {
+                .title {
+                    font-size: 54px;
+                }
+            }
         </style>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">

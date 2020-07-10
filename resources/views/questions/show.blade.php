@@ -4,19 +4,28 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="/pertanyaan" class="btn btn-secondary btn-sm mb-2"><i class="fa fa-arrow-left
+            <a href="/pertanyaan" class="btn btn-secondary btn-sm mb-3"><i class="fa fa-arrow-left
                 "></i> Kembali</a>
             <div class="card">
-                <div class="card-header">Pertanyaan oleh #
-                    {{$question->user->name}} 
-                    @foreach ($question->tag as
-                    $tag_question)
-                    <button class="btn btn-info btn-sm float-right mr-1">#{{$tag_question->tag_name}}</button>
-                    @endforeach</div>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            Pertanyaan oleh #
+                            {{$question->user->name}} 
+                        </div>
+                        <div class="col-sm-12 col-md-6 mt-2 text-sm-right">
+                            @foreach ($question->tag as
+                            $tag_question)
+                            <button class="btn btn-info btn-sm">#{{$tag_question->tag_name}}</button>
+                            @endforeach
+                        </div>
+                        </div>
+                    </div>
                 <div class="card-body">
                     <h1>{{$question->title}} </h1>
-                    <p>{{$question->content}}</p>
                     <small>{{$question->created_at}}</small>
+                    <hr>
+                    <p>{{$question->content}}</p>
                 </div>
             </div>
             @if (!$commentq->isEmpty())
