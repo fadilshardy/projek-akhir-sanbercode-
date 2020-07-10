@@ -13,13 +13,16 @@ class QuestionController extends Controller
 {
     public function index()
     {
+        
         $question = Question::get();
 
         $question = $question->sortByDesc(function ($question) {
             return $question->votes->sum('voted');
         });
+        $tag = Tag::all();
         return view('questions.index', [
             'questions' => $question,
+            'tag'=>$tag,
             // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
         ]);
     }
@@ -55,7 +58,7 @@ class QuestionController extends Controller
             $question->tag()->attach($tag_save->id);
         }
         //dd($tag_save);
-        return redirect()->route('pertanyaan.index');
+        return redirect('/pertanyaan');
     }
 
     public function show($id)
@@ -129,5 +132,26 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         $question->delete();
+    }
+    public function tag($id)
+    {   $tag_search = Tag::find($id);
+        $title=$tag_search->tag_name;
+        $id_question=[];
+        foreach ($tag_search->question as $idq){
+            $id_question[] = $idq->id;
+        }
+        $question = Question::whereIn('id', $id_question)->get();
+        //dd($question);
+        //dd();
+        $question = $question->sortByDesc(function ($question) {
+            return $question->votes->sum('voted');
+        });
+        $tag = Tag::all();
+        return view('questions.bytag', [
+            'questions' => $question,
+            'tag'=>$tag,
+            'title'=>$title,
+            // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
+        ]);
     }
 }

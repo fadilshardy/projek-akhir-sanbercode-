@@ -15,7 +15,9 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 my-1">
-                                    <h4 class="mb-0">Kumpulan Pertanyaan</h4>
+                                <h6 class="mb-0">Menampilkan pertanyaan dengan tag: <i class="fa fa-hashtag" aria-hidden="true"></i>{{$title}}
+                                
+                                </h6>
                                 </div>
     
                                 <div class="col-sm-12 col-md-6 my-1" >

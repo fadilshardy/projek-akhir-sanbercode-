@@ -41,5 +41,6 @@ Route::post('/pertanyaan/{question}/upvote', 'QuestionController@upvote');
 Route::post('/pertanyaan/{question}/downvote', 'QuestionController@downvote');
 Route::post('/pertanyaan/{question}/unvote/{status}', 'QuestionController@unvote');
 });
-Route::get('pertanyaan', 'QuestionController@index');
+Route::get('pertanyaan', 'QuestionController@index')->name('index');
+Route::get('tag/{id}', 'QuestionController@tag')->name('tag');
 Route::get('pertanyaan/{id}', 'QuestionController@show');
