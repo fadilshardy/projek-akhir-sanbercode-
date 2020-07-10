@@ -64,17 +64,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-header">Explore by Tags</div>
-                        <div class="card-body">
-                            @foreach ($tag as $taging)
-                            <a href="/tag/{{$taging->id}}" class="btn btn-sm border mt-1">                          
-                        <i class="fa fa-hashtag" aria-hidden="true"></i> {{$taging->tag_name}}</a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+                @include('questions.partials.sidebar')
             </div>
         </div>
     </div>

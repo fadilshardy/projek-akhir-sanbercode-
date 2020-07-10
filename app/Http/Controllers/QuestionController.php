@@ -171,13 +171,26 @@ class QuestionController extends Controller
         }
         $question = Question::whereIn('id', $id_question)->withCount('answers')->get();
         $question = $question->sortByDesc(function ($question) {
-            return $question->votes->sum('voted');
+            $downvote = 0;
+        $upvote = 0;
+            foreach ($question->votes as $vote){
+            if($vote->voted==0){
+            $downvote += 1;
+                
+             }else{
+            $upvote +=  1;
+             }
+            }
+            //dd($upvote-$downvote);
+            return $upvote-$downvote;
         });
+        $user = User::orderBy('point','desc')->take(5)->get();
         $tag = Tag::all();
         return view('questions.bytag', [
             'questions' => $question,
             'tag'=>$tag,
             'title'=>$title,
+            'user'=>$user,
             // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
         ]);
     }
