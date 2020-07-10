@@ -44,8 +44,11 @@
                                     <h5 class="card-subtitle">
                                         <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
                                     </h5><br>
-                                    <p class="card-text font-weight-light text-muted">Pembuat: {{$item->user->name}}
-                                        {{$item->answers_count}}</p>
+                                    <p class="card-text font-weight-light text-muted">
+                                        Pembuat: {{$item->user->name}}
+                                        
+                                    </p>
+
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)
                                         <a href="/tag/{{$tag_question->id}}" class="btn btn-info btn-sm my-1">
@@ -64,7 +67,7 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <div class="card">
+                    <div class="card sticky">
                         <div class="card-header">Explore by Tags</div>
                         <div class="card-body">
                             @foreach ($tag as $taging)

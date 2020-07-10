@@ -46,5 +46,10 @@
             @endauth
             @endif
         </div>
+
+        <div class="col-sm-12 text-center">
+            <button class="btn btn-sm btn-success mt-1">Total answers: {{$item->answers_count}}</button>
+
+        </div>
     </div>
 </div>

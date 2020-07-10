@@ -11035,3 +11035,16 @@ body.sidebar-toggled footer.sticky-footer {
 .btn-vote p {
   font-size: 0.65rem;
 }
+
+.sticky {
+  position: -webkit-sticky;
+	position: sticky;
+  top: 0;
+}
+
+.btn-group-xs > .btn, .btn-xs {
+  padding: .45rem .5rem;
+  font-size: .775rem;
+  line-height: .5;
+  border-radius: .2rem;
+}

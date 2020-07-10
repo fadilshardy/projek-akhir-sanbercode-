@@ -6,7 +6,7 @@
                 <span style="font-size: 12px">answered at {{$jawaban->created_at}}</span>
             </div>
 
-            <div class="col-sm-12 col-lg-8 text-lg-right">
+            <div class="col-sm-12 col-lg-8 my-auto text-lg-right">
                 @if($jawaban->is_author() )
                 <button class="btn btn-sm btn-vote {{$jawaban->vote_status() ? 'bg-success' : ''}}">
                     {{$jawaban->upvote_count()}}

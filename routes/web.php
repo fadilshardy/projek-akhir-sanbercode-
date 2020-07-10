@@ -44,3 +44,5 @@ Route::post('/pertanyaan/{question}/unvote/{status}', 'QuestionController@unvote
 Route::get('pertanyaan', 'QuestionController@index')->name('index');
 Route::get('tag/{id}', 'QuestionController@tag')->name('tag');
 Route::get('pertanyaan/{id}', 'QuestionController@show');
+Route::get('pertanyaan/{id}/edit', 'QuestionController@edit');
+Route::delete('pertanyaan/{id}/delete', 'QuestionController@destroy');

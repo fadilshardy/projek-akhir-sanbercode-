@@ -27,7 +27,7 @@
                             
                         <input type="text" class="form-control" name="tags" value="@foreach ($question->tag as $tag){{$tag->tag_name}},@endforeach" placeholder="tags pisahkan dengan koma">
                         </div>
-                        <button type="submit" class="btn btn-secondary mt-2">Submit</button>
+                        <button type="submit" class="btn btn-success mt-2">Submit</button>
                     </form>
                 </div>
             </div>
@@ -35,3 +35,16 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+<script>
+    var konten = document.getElementById("content");
+    CKEDITOR.replace(content, {
+        language: 'en-gb'
+    });
+    CKEDITOR.config.allowedContent = true;
+    CKEDITOR.instances.editor1.document.getBody().getText()
+
+</script>
+@endpush
