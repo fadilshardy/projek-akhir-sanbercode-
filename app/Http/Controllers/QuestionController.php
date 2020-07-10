@@ -147,8 +147,8 @@ class QuestionController extends Controller
 
     public function downvote(Question $question)
     {
-        $question->downvote();
-        return redirect('/pertanyaan');
+        $downvote = $question->downvote();
+        return redirect('/pertanyaan')->with('status', $downvote);
     }
 
     public function unvote(Question $question, $status)

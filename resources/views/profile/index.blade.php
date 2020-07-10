@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status') }}
+</div>
+@endif
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -18,14 +24,15 @@
                         <li class="list-group-item">Total Pertanyaan: {{$question}}</li>
                         <li class="list-group-item">Total Jawaban: {{$answer}}</li>
                     </ul>
-                <p><a href="/profile/{{Auth::user()->id}}/edit" class="btn btn-primary float-right">Edit Profile</a></p>
+                    <p><a href="/profile/{{Auth::user()->id}}/edit" class="btn btn-primary float-right">Edit Profile</a>
+                    </p>
                     @else
                     Profilemu masih kosong, lengkapi profilemu sekarang juga.<br>
-                        <a href="/profile/create" class="btn btn-primary">Lengkapi Profile</a>
+                    <a href="/profile/create" class="btn btn-primary">Lengkapi Profile</a>
                     @endif
                 </div>
             </div>
-            </div>
+        </div>
     </div>
 </div>
 

@@ -79,11 +79,15 @@ class Question extends Model
 
     public function downvote()
     {
+        $user = User::find(auth()->id());
+
         $question = $this->votes()->where('user_id', auth()->id())
             ->where('question_id', $this->id);
 
         if ($question->exists()) {
-            return $this->unvote('upvote');
+            $this->unvote('upvote');
+        } else if ($user->point <= 15) {
+            return "anda tidak memiliki point yang cukup untuk melakukan downvote";
         } else {
             $this->votes()->updateOrCreate([
                 'user_id' => auth()->id(),
@@ -91,7 +95,9 @@ class Question extends Model
                 'voted' => false,
             ]);
             $this->point('downvote');
-        }}
+        }
+
+    }
 
     public function unvote($vote)
     {
