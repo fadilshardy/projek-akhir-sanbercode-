@@ -17,8 +17,8 @@
                                 <div class="col-sm-12 col-md-6 my-1">
                                     <h4 class="mb-0">Kumpulan Pertanyaan</h4>
                                 </div>
-    
-                                <div class="col-sm-12 col-md-6 my-1" >
+
+                                <div class="col-sm-12 col-md-6 my-1">
                                     <p class="d-inline-block mb-0">
                                         Ingin membuat pertanyaan baru?
                                     </p>
@@ -44,7 +44,8 @@
                                     <h5 class="card-subtitle">
                                         <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
                                     </h5><br>
-                                    <p class="card-text font-weight-light text-muted">Pembuat: {{$item->user->name}}</p>
+                                    <p class="card-text font-weight-light text-muted">Pembuat: {{$item->user->name}}
+                                        {{$item->answers_count}}</p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)
                                         <button class="btn btn-info btn-sm my-1">#{{$tag_question->tag_name}}</button>
