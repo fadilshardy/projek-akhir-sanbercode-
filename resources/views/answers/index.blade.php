@@ -1,13 +1,5 @@
 <div class="card mt-2">
     <div class="card-header {{$jawaban->is_right_answer ? 'bg-info' : ''}}">
-
-        <div class="d-flex align-items-center">
-            
-        </div>
-        
-        
-        
-
         <div class="row">
             <div class="col-sm-12 col-lg-6 my-1">
                 {{$jawaban->user->name}}
@@ -15,7 +7,8 @@
 
             <div class="col-sm-12 col-lg-6 text-lg-right">
                 @if ($jawaban->is_author() != True)
-                @auth<form action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() ? 'unvote/upvote' : 'upvote'}}"
+                @auth
+                    <form action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() ? 'unvote/upvote' : 'upvote'}}"
                     method="POST">
                     @csrf
                     @endauth
@@ -23,9 +16,9 @@
                         {{$jawaban->upvote_count()}}
                         <i class="fa fa-arrow-up"></i>
                     </button>
-                    @auth</form>@endauth
+                    @auth</form>
+                @endauth
 
-                <div class="col-sm">
                     @auth
                     
                     <form action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() === 0 ? 'unvote/downvote ' : 'downvote'}}"
@@ -38,8 +31,9 @@
                             {{$jawaban->downvote_count()}}
                             <i class="fa fa-arrow-down"></i>
                         </button>
-                        @auth</form>@endauth
-                </div>
+                        @auth
+                    </form>
+                    @endauth
                 @else
                 @endif
 
