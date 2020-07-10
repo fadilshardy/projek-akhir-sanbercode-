@@ -1,14 +1,14 @@
 <div class="card mt-2">
     <div class="card-header {{$jawaban->is_right_answer ? 'bg-info' : ''}}">
         <div class="row">
-            <div class="col-sm-12 col-lg-6 my-1">
+            <div class="col-sm-12 col-lg-4 my-1">
                 {{$jawaban->user->name}}
             </div>
 
-            <div class="col-sm-12 col-lg-6 text-lg-right">
+            <div class="col-sm-12 col-lg-8 text-lg-right">
                 @if ($jawaban->is_author() != True)
                 @auth
-                    <form action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() ? 'unvote/upvote' : 'upvote'}}"
+                    <form class="d-inline-block" action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() ? 'unvote/upvote' : 'upvote'}}"
                     method="POST">
                     @csrf
                     @endauth
@@ -21,7 +21,7 @@
 
                     @auth
                     
-                    <form action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() === 0 ? 'unvote/downvote ' : 'downvote'}}"
+                    <form class="d-inline-block" action="/jawaban/{{$jawaban->id}}/{{$jawaban->vote_status() === 0 ? 'unvote/downvote ' : 'downvote'}}"
                         method="POST">
                         
                         @csrf
@@ -34,12 +34,13 @@
                         @auth
                     </form>
                     @endauth
+                </div>
                 @else
                 @endif
-
+                
                 @if ($jawaban->is_author())
                 <a href="/jawaban/{{$jawaban->id}}/edit" class="btn btn-sm btn-warning">Edit</a>
-                <form action="/jawaban/{{$jawaban->id}}" method="POST" style="display:inline">
+                <form class="d-inline-block" action="/jawaban/{{$jawaban->id}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="question_id" value="{{$question->id}}">
@@ -50,7 +51,7 @@
                 @endif
                 @auth
                 @if ($question->user_id==Auth::user()->id)
-                <form action="/jawaban/{{$jawaban->id}}/right" method="POST" style="display:inline">
+                <form class="d-inline-block" action="/jawaban/{{$jawaban->id}}/right" method="POST">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="question_id" value="{{$question->id}}">
