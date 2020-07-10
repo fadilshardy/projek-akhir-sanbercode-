@@ -36,7 +36,7 @@ Route::get('komentar_jawaban/create/{id}', 'CommentAnswerController@create');
 
 Route::resource('pertanyaan', 'QuestionController')->except(['index','show']);
 
-Route::resource('profile', 'ProfileController');
+Route::resource('profile', 'ProfileController')->except(['show']);
 Route::post('/pertanyaan/{question}/upvote', 'QuestionController@upvote');
 Route::post('/pertanyaan/{question}/downvote', 'QuestionController@downvote');
 Route::post('/pertanyaan/{question}/unvote/{status}', 'QuestionController@unvote');
@@ -44,3 +44,4 @@ Route::post('/pertanyaan/{question}/unvote/{status}', 'QuestionController@unvote
 Route::get('pertanyaan', 'QuestionController@index')->name('index');
 Route::get('tag/{id}', 'QuestionController@tag')->name('tag');
 Route::get('pertanyaan/{id}', 'QuestionController@show');
+Route::get('profile/{id}', 'ProfileController@show');

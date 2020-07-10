@@ -44,7 +44,7 @@
                                     <h5 class="card-subtitle">
                                         <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
                                     </h5><br>
-                                    <p class="card-text font-weight-light text-muted">Pembuat: {{$item->user->name}}
+                                    <p class="card-text font-weight-light text-muted">Pembuat: <a href="/profile/{{$item->user->id}}">{{$item->user->name}}</a>
                                         {{$item->answers_count}}</p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)

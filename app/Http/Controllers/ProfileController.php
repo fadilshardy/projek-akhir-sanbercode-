@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Profile;
+use App\Question;
+use App\Answer;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
@@ -17,7 +20,10 @@ class ProfileController extends Controller
         //
         $profile = Profile::where('user_id','=',Auth::user()->id)->first();
         //dd($profile);
-        return view('profile.index', compact('profile'));
+        $question = Question::where('user_id',Auth::user()->id)->count();
+        $answer = Answer::where('user_id',Auth::user()->id)->count();
+        //dd($answer);
+        return view('profile.index', compact('profile','question','answer'));
     }
 
     /**
@@ -58,6 +64,13 @@ class ProfileController extends Controller
     public function show($id)
     {
         //
+        $profile = Profile::where('user_id','=',$id)->first();
+        //dd($profile);
+        $question = Question::where('user_id',$id)->count();
+        $answer = Answer::where('user_id',$id)->count();
+        $user = User::where('id',$id)->first();
+        //dd($answer);
+        return view('profile.show', compact('profile','question','answer','user'));
     }
 
     /**
@@ -83,6 +96,7 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
         $profile=Profile::where('user_id','=',Auth::user()->id)->update([
             'full_name' =>$request['full_name'],
             'address' =>$request['address'],

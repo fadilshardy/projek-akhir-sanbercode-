@@ -1,8 +1,8 @@
 <div class="card mt-2">
-    <div class="card-header {{$jawaban->is_right_answer ? 'bg-info' : ''}}">
+    <div class="card-header {{$jawaban->is_right_answer ? 'bg-success text-light' : ''}}">
         <div class="row">
             <div class="col-sm-12 col-lg-4 my-1">
-                {{$jawaban->user->name}}<br>
+                <a href="/profile/{{$jawaban->user->id}}" class="{{$jawaban->is_right_answer ? 'text-light' : ''}}">{{$jawaban->user->name}}</a><br>
                 <span style="font-size: 12px">answered at {{$jawaban->created_at}}</span>
             </div>
 
@@ -92,8 +92,9 @@
 
 
         <button type="button" class="btn btn-sm btn-light">
-            <span class="badge badge-dark">{{$komentar->user->name}}</span> : {{$komentar->content}}
+            <a href="/profile/{{$komentar->user->id}}"><span class="badge badge-dark">{{$komentar->user->name}}</span></a> : {{$komentar->content}}
         </button><br>
+
         @endforeach
         <form action="/komentar_jawaban" method="post">
             @csrf

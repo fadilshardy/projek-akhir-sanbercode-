@@ -4,14 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="{{ URL::previous() }}" class="btn btn-secondary btn-sm mb-3"><i class="fa fa-arrow-left
-                "></i> Kembali</a>
+            <a href="/pertanyaan" class="btn btn-secondary btn-sm mb-3"><i class="fa fa-arrow-left
+                "></i> Daftar Pertanyaan</a>
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                            Pertanyaan oleh #
-                            {{$question->user->name}}
+                            Pertanyaan oleh: 
+                            <a href="/profile/{{$question->user->id}}">{{$question->user->name}}</a>
                         </div>
                         <div class="col-sm-12 col-md-6 mt-2 text-sm-right">
                             @foreach ($question->tag as

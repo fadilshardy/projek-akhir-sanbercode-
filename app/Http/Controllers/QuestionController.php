@@ -16,7 +16,11 @@ class QuestionController extends Controller
 
         $question = Question::withCount('answers')->get();
         $question = $question->sortByDesc(function ($question) {
-            return $question->votes->sum('voted');
+            if($question->votes->sum('voted')==0){
+                return $question->votes->count('voted')*(-1);
+            }else{
+                return $question->votes->count('voted')*(1);
+            };
         });
         $tag = Tag::all();
         return view('questions.index', [
@@ -63,7 +67,16 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        $answer = Answer::where('question_id', '=', $id)->orderBy('is_right_answer', 'desc')->get();
+        $answer = Answer::where('question_id', '=', $id)->get();
+        $answer = $answer->sortByDesc(function ($answer) {
+            if($answer->votes->sum('voted')==0){
+                return $answer->votes->count('voted')*(-1);
+            }else{
+                return $answer->votes->count('voted')*(1);
+            };
+            
+            
+        })->sortBy('Case when voted is null then 1 else 0 end')->sortByDesc('is_right_answer');
         $commentq = Comment_Question::where('question_id', '=', $id)->get();
         $commenta = [];
         //dd($answer[0]->comment);
