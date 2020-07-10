@@ -139,9 +139,7 @@ class QuestionController extends Controller
         foreach ($tag_search->question as $idq){
             $id_question[] = $idq->id;
         }
-        $question = Question::whereIn('id', $id_question)->get();
-        //dd($question);
-        //dd();
+        $question = Question::whereIn('id', $id_question)->withCount('answers')->get();
         $question = $question->sortByDesc(function ($question) {
             return $question->votes->sum('voted');
         });
