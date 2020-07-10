@@ -14,28 +14,28 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        
+
         $question = Question::withCount('answers')->get();
         $question = $question->sortByDesc(function ($question) {
             $downvote = 0;
-        $upvote = 0;
-            foreach ($question->votes as $vote){
-            if($vote->voted==0){
-            $downvote += 1;
-                
-             }else{
-            $upvote +=  1;
-             }
+            $upvote = 0;
+            foreach ($question->votes as $vote) {
+                if ($vote->voted == 0) {
+                    $downvote += 1;
+
+                } else {
+                    $upvote += 1;
+                }
             }
             //dd($upvote-$downvote);
-            return $upvote-$downvote;
+            return $upvote - $downvote;
         });
-        $user = User::orderBy('point','desc')->take(5)->get();
+        $user = User::orderBy('point', 'desc')->take(5)->get();
         $tag = Tag::all();
         return view('questions.index', [
             'questions' => $question,
-            'tag'=>$tag,
-            'user'=>$user,
+            'tag' => $tag,
+            'user' => $user,
             // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
         ]);
     }
@@ -76,18 +76,20 @@ class QuestionController extends Controller
 
     public function show($id)
     {
+        $count = Question::withCount('answers')->where('id', $id)->value('answers_count');
         $question = Question::find($id);
+        $question->answers_count = $count;
         $answer = Answer::where('question_id', '=', $id)->get();
         $answer = $answer->sortByDesc(function ($answer) {
             $downvote = 0;
-        $upvote = 0;
-            foreach ($answer->votes as $vote){
-            if($vote->voted==0){
-            $downvote += 1;
-                
-             }else{
-            $upvote +=  1;
-             }
+            $upvote = 0;
+            foreach ($answer->votes as $vote) {
+                if ($vote->voted == 0) {
+                    $downvote += 1;
+
+                } else {
+                    $upvote += 1;
+                }
             }
             //dd($upvote-$downvote);
             return $upvote-$downvote;
@@ -135,7 +137,7 @@ class QuestionController extends Controller
             $tag_save = Tag::firstOrCreate($tag_single);
             $question_search->tag()->attach($tag_save->id);
         }
-        return redirect('/pertanyaan/'.$id);
+        return redirect('/pertanyaan/' . $id);
 
     }
 
@@ -147,8 +149,8 @@ class QuestionController extends Controller
 
     public function downvote(Question $question)
     {
-        $question->downvote();
-        return redirect('/pertanyaan');
+        $downvote = $question->downvote();
+        return redirect('/pertanyaan')->with('status', $downvote);
     }
 
     public function unvote(Question $question, $status)
@@ -158,42 +160,42 @@ class QuestionController extends Controller
 
     }
 
-    public function destroy($id,Request $request)
+    public function destroy($id, Request $request)
     {
         //dd($id);
-        $delete = Question::where('id','=',$id)->delete();
+        $delete = Question::where('id', '=', $id)->delete();
         return redirect('/pertanyaan');
     }
-    
+
     public function tag($id)
-    {   $tag_search = Tag::find($id);
-        $title=$tag_search->tag_name;
-        $id_question=[];
-        foreach ($tag_search->question as $idq){
+    {$tag_search = Tag::find($id);
+        $title = $tag_search->tag_name;
+        $id_question = [];
+        foreach ($tag_search->question as $idq) {
             $id_question[] = $idq->id;
         }
         $question = Question::whereIn('id', $id_question)->withCount('answers')->get();
         $question = $question->sortByDesc(function ($question) {
             $downvote = 0;
-        $upvote = 0;
-            foreach ($question->votes as $vote){
-            if($vote->voted==0){
-            $downvote += 1;
-                
-             }else{
-            $upvote +=  1;
-             }
+            $upvote = 0;
+            foreach ($question->votes as $vote) {
+                if ($vote->voted == 0) {
+                    $downvote += 1;
+
+                } else {
+                    $upvote += 1;
+                }
             }
             //dd($upvote-$downvote);
-            return $upvote-$downvote;
+            return $upvote - $downvote;
         });
-        $user = User::orderBy('point','desc')->take(5)->get();
+        $user = User::orderBy('point', 'desc')->take(5)->get();
         $tag = Tag::all();
         return view('questions.bytag', [
             'questions' => $question,
-            'tag'=>$tag,
-            'title'=>$title,
-            'user'=>$user,
+            'tag' => $tag,
+            'title' => $title,
+            'user' => $user,
             // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
         ]);
     }

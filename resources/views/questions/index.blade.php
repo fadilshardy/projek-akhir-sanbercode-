@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('status'))
+<div class="alert alert-danger">
+    {{ session('status') }}
+</div>
+@endif
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -44,12 +50,13 @@
                                     <h5 class="card-subtitle">
                                         <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
                                     </h5><br>
-                                    <p class="card-text font-weight-light text-muted">Pembuat: <a href="/profile/{{$item->user->id}}">{{$item->user->name}}</a>
+                                    <p class="card-text font-weight-light text-muted">Pembuat: <a
+                                            href="/profile/{{$item->user->id}}">{{$item->user->name}}</a>
                                         {{$item->answers_count}}</p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)
                                         <a href="/tag/{{$tag_question->id}}" class="btn btn-info btn-sm my-1">
-                                        #{{$tag_question->tag_name}}
+                                            #{{$tag_question->tag_name}}
                                         </a>
                                         @endforeach
                                     </div>
