@@ -22,7 +22,8 @@
                         <div class="col-sm-12 col-md-6 my-auto text-sm-right">
                             @foreach ($question->tag as
                             $tag_question)
-                            <button class="btn btn-info btn-sm">#{{$tag_question->tag_name}}</button>
+                            <a class="btn btn-info btn-sm" href="/tag/{{$tag_question->id}}">
+                                #{{$tag_question->tag_name}} </a>
                             @endforeach
                         </div>
                     </div>
@@ -62,8 +63,17 @@
                     <form action="/komentar_pertanyaan" method="post">
                         @csrf
                         <input type="hidden" name="question_id" value="{{$question->id}}">
-                        <input type="text" class="form-control form-control-sm mt-2" name="content"
-                            placeholder="Tambahkan komentar . . .">
+                        <div class="row">
+                            <div class="col-lg-12 ">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control input-sm"
+                                        placeholder="Tambahkan komentar ..." name="content">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary btn-sm ml-2" type="submit">Submit</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                     @endauth
 
@@ -73,7 +83,8 @@
                     <hr class="my-2">
                     <hr>
                     <h6 class="my-2 font-weight-bold">
-                        <i class="fa fa-reply" aria-hidden="true"></i> <span id="jumlah"></span> jawaban:
+                        <i class="fa fa-reply" aria-hidden="true"></i> <span id="jumlah"></span> jawaban
+                        ({{$question->answers_count}}):
                     </h6>
                     @foreach ($answer as $jawaban)
                     @include('answers.index')
@@ -154,10 +165,10 @@
         language: 'en-gb'
     });
     CKEDITOR.config.allowedContent = true;
-    CKEDITOR.instances.editor1.document.getBody().getText()
+    CKEDITOR.instances.editor1.document.getBody().getText();
 
 </script>
 <script>
-    const jawab = document.getElementById('jumlah')
+    const jawab = document.getElementById('jumlah');
 </script>
 @endpush
