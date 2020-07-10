@@ -2,7 +2,8 @@
     <div class="card-header {{$jawaban->is_right_answer ? 'bg-info' : ''}}">
         <div class="row">
             <div class="col-sm-12 col-lg-4 my-1">
-                {{$jawaban->user->name}}
+                {{$jawaban->user->name}}<br>
+                <span style="font-size: 12px">answered at {{$jawaban->created_at}}</span>
             </div>
 
             <div class="col-sm-12 col-lg-8 text-lg-right">
@@ -80,13 +81,12 @@
 
 <div class="card-body">
     {!!$jawaban->content!!}
-    <footer>{{$jawaban->created_at}}</footer>
-    @auth
+    {{-- @auth
     <a href="/komentar_jawaban/create/{{$jawaban->id}}" class="btn btn-sm btn-primary mt-3">Post A Reply</a>
-    @endauth
-
-    <p class="mt-2 border p-2">
-        Komentar: <br>
+    @endauth --}}
+        <hr>
+    <p >
+        Komentar Jawaban: <br>
         @foreach ($jawaban->comment as $komentar)
 
 
@@ -94,6 +94,13 @@
             <span class="badge badge-dark">{{$komentar->user->name}}</span> : {{$komentar->content}}
         </button><br>
         @endforeach
+        <form action="/komentar_jawaban" method="post">
+            @csrf
+            <input type="hidden" name="answer_id" value="
+            @auth {{$jawaban->id}} @endauth">
+            <input type="text" class="form-control form-control-sm mt-2" name="content"
+                placeholder="Tekan tombol Enter untuk memberi komentar pada jawaban ini...">
+        </form>
     </p>
 </div>
 </div>
