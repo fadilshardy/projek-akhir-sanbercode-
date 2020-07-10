@@ -93,7 +93,7 @@ class QuestionController extends Controller
             return $upvote-$downvote;
             
             
-        })->sortBy('Case when voted is null then 1 else 0 end')->sortByDesc('is_right_answer');
+        })->sortByDesc('is_right_answer');
         $commentq = Comment_Question::where('question_id', '=', $id)->get();
         $commenta = [];
         //dd($answer[0]->comment);

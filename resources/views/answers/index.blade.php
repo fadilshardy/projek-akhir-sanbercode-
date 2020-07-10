@@ -1,4 +1,4 @@
-<div class="card mt-2">
+<div class="card mt-2 ">
     <div class="card-header {{$jawaban->is_right_answer ? 'bg-success text-light' : ''}}">
         <div class="row">
             <div class="col-sm-12 col-lg-4 my-1">
@@ -107,14 +107,16 @@
             @if ($jawaban->comment->isEmpty())
             <small><em>Belum terdapat komentar</em></small>
             @else
-            <small class="font-weight-bold">komentar:</small> <br>
+            <small class="font-weight-bold">Komentar({{count($jawaban->comment)}}):</small> <br>
             @endif
             @foreach ($jawaban->comment as $komentar)
 
 
         <button type="button" class="btn btn-sm btn-light">
             <a href="/profile/{{$komentar->user->id}}"><span class="badge badge-dark">{{$komentar->user->name}}</span></a> : {{$komentar->content}}
-        </button><br>
+        </button>
+        <small class="font-italic text-muted">{{$komentar->updated_at->diffForHumans()}}</small>
+        <br>
 
         @endforeach
         <form action="/komentar_jawaban" method="post">

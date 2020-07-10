@@ -10,7 +10,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-12 col-md-6 my-auto">
-                            Pertanyaan oleh # {{$question->user->name}} <br>
+                            Pertanyaan oleh: <a href="/profile/{{$question->user->id}}">{{$question->user->name}} </a>
+                            
+                            <br>
                             @if ($question->is_author())
                             <a href="{{$question->id}}/edit" class="btn btn-xs btn-warning">Edit</a>
                              
@@ -48,7 +50,7 @@
                     </p>
                     @else 
                     <h6 class="mb-2 font-weight-bold">
-                        <i class="fa fa-comments" aria-hidden="true"></i> komentar:
+                        <i class="fa fa-comments" aria-hidden="true"></i> Komentar({{count($commentq)}}):
                     </h6>
                     @endif
                     <p >
@@ -72,7 +74,7 @@
                     <hr class="my-2">
                     <hr>
                     <h6 class="my-2 font-weight-bold">
-                        <i class="fa fa-reply" aria-hidden="true"></i> <span id="jumlah"></span> jawaban:
+                        <i class="fa fa-reply" aria-hidden="true"></i> <span id="jumlah"></span> Jawaban({{count($answer)}}):
                     </h6>
                     @foreach ($answer as $jawaban)
                     @include('answers.index')
