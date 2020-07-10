@@ -20,7 +20,7 @@
                 </div>
             </div>
             @if (!$commentq->isEmpty())
-            <div class="card mt-1">
+            <div class="card mt-3">
                 <div class="card-header bg-secondary text-white">
                     Komentar:
                 </div>
@@ -35,7 +35,7 @@
                     <form action="/komentar_pertanyaan" method="post">
                         @csrf
                         <input type="hidden" name="question_id" value="{{$question->id}}">
-                        <input type="text" class="form-control form-control-sm" name="content"
+                        <input type="text" class="form-control form-control-sm mt-2" name="content"
                             placeholder="Tekan tombol Enter untuk memberi komentar...">
                     </form>@endauth
                 </div>

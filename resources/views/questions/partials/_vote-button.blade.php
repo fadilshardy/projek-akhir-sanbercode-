@@ -1,4 +1,4 @@
-<div class="col-sm-2 summary d-flex align-items-center justify-content-end text-right">
+<div class="col-sm-3 summary d-flex align-items-center justify-content-start text-right">
     <div class="row">
         <div class="col-sm mr-1">
             @auth

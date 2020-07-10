@@ -38,7 +38,7 @@
                             @foreach ($questions as $key => $item)
                             {{-- start of 1 question  --}}
                             <div id="question" href="" class="col-sm-12 row">
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <h5 class="card-subtitle">
                                         <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
                                     </h5><br>
