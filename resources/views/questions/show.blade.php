@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             Pertanyaan oleh #
-                            {{$question->user->name}} 
+                            {{$question->user->name}}
                         </div>
                         <div class="col-sm-12 col-md-6 mt-2 text-sm-right">
                             @foreach ($question->tag as
@@ -19,13 +19,13 @@
                             <button class="btn btn-info btn-sm">#{{$tag_question->tag_name}}</button>
                             @endforeach
                         </div>
-                        </div>
                     </div>
+                </div>
                 <div class="card-body">
                     <h1>{{$question->title}} </h1>
                     <small>{{$question->created_at}}</small>
                     <hr>
-                    <p>{{$question->content}}</p>
+                    <p>{!!$question->content!!}</p>
                 </div>
             </div>
             <div class="card mt-3">
@@ -35,9 +35,9 @@
 
                 <div class="card-body">
                     @if ($commentq->isEmpty())
-                        <p class="text-center mb-2">
-                            Belum terdapat komentar
-                        </p>
+                    <p class="text-center mb-2">
+                        Belum terdapat komentar
+                    </p>
                     @endif
                     <p class='border'>
                         @foreach ($commentq as $comment)
@@ -46,15 +46,15 @@
 
                     </p>
                     @auth
-                        <form action="/komentar_pertanyaan" method="post">
-                            @csrf
-                            <input type="hidden" name="question_id" value="{{$question->id}}">
-                            <input type="text" class="form-control form-control-sm mt-2" name="content"
-                                placeholder="Tekan tombol Enter untuk memberi komentar...">
-                        </form>
+                    <form action="/komentar_pertanyaan" method="post">
+                        @csrf
+                        <input type="hidden" name="question_id" value="{{$question->id}}">
+                        <input type="text" class="form-control form-control-sm mt-2" name="content"
+                            placeholder="Tekan tombol Enter untuk memberi komentar...">
+                    </form>
                     @endauth
                 </div>
-            </div>            
+            </div>
             <hr class="my-2">
             @foreach ($answer as $jawaban)
             @include('answers.index')
