@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <a href="{{ URL::previous() }}" class="btn btn-secondary btn-sm mb-3"><i class="fa fa-arrow-left
                 "></i> Kembali</a>
             <div class="card">
@@ -25,18 +25,21 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    {{-- 
+                        komentar 
+                    --}}
                     <h1>{{$question->title}} </h1>
                     <small style="border-bottom: 1px solid grey">{{$question->created_at}}</small>
                     <p class="mt-2">{!!$question->content!!}</p>
                     <hr>
                     @if ($commentq->isEmpty())
                     <p class="text-center mb-2">
-                        Belum terdapat komentar
+                        <small><em>Belum terdapat komentar</em></small>
                     </p>
-                    {{-- @else 
-                    <small>
-                        komentar:
-                    </small> --}}
+                    @else 
+                    <h6 class="mb-2 font-weight-bold">
+                        <i class="fa fa-comments" aria-hidden="true"></i> komentar:
+                    </h6>
                     @endif
                     <p >
                         @foreach ($commentq as $comment)
@@ -49,8 +52,23 @@
                         @csrf
                         <input type="hidden" name="question_id" value="{{$question->id}}">
                         <input type="text" class="form-control form-control-sm mt-2" name="content"
-                            placeholder="Tekan tombol Enter untuk memberi komentar...">
+                            placeholder="Tambahkan komentar . . .">
                     </form>
+                    @endauth
+
+                    {{-- 
+                        jawaban 
+                    --}}
+                    <hr class="my-2">
+                    <hr>
+                    <h6 class="my-2 font-weight-bold">
+                        <i class="fa fa-reply" aria-hidden="true"></i> <span id="jumlah"></span> jawaban:
+                    </h6>
+                    @foreach ($answer as $jawaban)
+                    @include('answers.index')
+                    @endforeach
+                    @auth
+                    @include('answers.create')
                     @endauth
                 </div>
             </div>
@@ -83,13 +101,7 @@
                 </div>
             </div> --}}
 
-            <hr class="my-2">
-            @foreach ($answer as $jawaban)
-            @include('answers.index')
-            @endforeach
-            @auth
-            @include('answers.create')
-            @endauth
+            
         </div>
     </div>
 </div>
@@ -132,10 +144,6 @@
 
 </script>
 <script>
-    function deleteQuestion() {
-        if (confirm('Apa Anda yakin ingin menghapus pertanyaan ini?')) {
-
-        }
-    }
+    const jawab = document.getElementById('jumlah')
 </script>
 @endpush
