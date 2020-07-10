@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="/pertanyaan" class="btn btn-secondary btn-sm mb-3"><i class="fa fa-arrow-left
+            <a href="{{ URL::previous() }}" class="btn btn-secondary btn-sm mb-3"><i class="fa fa-arrow-left
                 "></i> Kembali</a>
             <div class="card">
                 <div class="card-header">

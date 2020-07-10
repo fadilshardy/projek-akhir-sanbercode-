@@ -47,7 +47,9 @@
                                     <p class="card-text font-weight-light text-muted">Pembuat: {{$item->user->name}}</p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)
-                                        <button class="btn btn-info btn-sm my-1">#{{$tag_question->tag_name}}</button>
+                                        <a href="/tag/{{$tag_question->id}}" class="btn btn-info btn-sm my-1">
+                                        #{{$tag_question->tag_name}}
+                                        </a>
                                         @endforeach
                                     </div>
                                 </div>
