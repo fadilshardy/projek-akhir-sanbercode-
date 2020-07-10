@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Comment_Answer;
 use App\Comment_Question;
 use App\Question;
 use App\Tag;
-use App\Comment_Answer;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
     public function index()
     {
-        
-        $question = Question::get();
 
+        $question = Question::withCount('answers')->get();
         $question = $question->sortByDesc(function ($question) {
             return $question->votes->sum('voted');
         });
@@ -64,15 +63,15 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        $answer= Answer::where('question_id','=',$id)->orderBy('is_right_answer', 'desc')->get();
-        $commentq= Comment_Question::where('question_id','=',$id)->get();
-        $commenta=[];
+        $answer = Answer::where('question_id', '=', $id)->orderBy('is_right_answer', 'desc')->get();
+        $commentq = Comment_Question::where('question_id', '=', $id)->get();
+        $commenta = [];
         //dd($answer[0]->comment);
-        foreach ($answer as $key => $jawaban){
-        $answer[$key]->comment= Comment_Answer::where('answer_id','=',$jawaban->id)->get();
+        foreach ($answer as $key => $jawaban) {
+            $answer[$key]->comment = Comment_Answer::where('answer_id', '=', $jawaban->id)->get();
         }
         //dd($jawaban->id);
-        return view('questions.show', compact('question','answer','commentq'));
+        return view('questions.show', compact('question', 'answer', 'commentq'));
     }
 
     public function edit($id)

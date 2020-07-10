@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class Question extends Model
 {
+
+    public function answers()
+    {
+        return $this->hasMany('\App\Answer');
+    }
     protected $guarded = [];
 
     public function is_author()
