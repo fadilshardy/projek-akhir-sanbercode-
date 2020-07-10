@@ -48,7 +48,7 @@
                     @auth
                 </form>
                 @endauth
-            </div>
+            
             @endif
 
             @if ($jawaban->is_author())
@@ -62,6 +62,7 @@
                 </button>
             </form>
             @endif
+            
             @auth
             @if ($question->user_id==Auth::user()->id)
             <form class="d-inline-block" action="/jawaban/{{$jawaban->id}}/right" method="POST">
