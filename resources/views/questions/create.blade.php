@@ -17,12 +17,14 @@
 
                         <div class="form-group">
                             <label for="content">Isi</label>
-                            <textarea required name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
+                            <textarea required name="content" class="form-control" id="content" cols="30"
+                                rows="10"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="title">Tag</label>
-                            <input required type="text" class="form-control" name="tags" placeholder="tags pisahkan dengan koma">
+                            <input required type="text" class="form-control" name="tags"
+                                placeholder="tags pisahkan dengan koma">
                         </div>
 
                         <button type="submit" class="btn btn-success mt-2">Submit</button>
@@ -33,3 +35,16 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+<script>
+    var konten = document.getElementById("content");
+    CKEDITOR.replace(content, {
+        language: 'en-gb'
+    });
+    CKEDITOR.config.allowedContent = true;
+    CKEDITOR.instances.editor1.document.getBody().getText()
+
+</script>
+@endpush
