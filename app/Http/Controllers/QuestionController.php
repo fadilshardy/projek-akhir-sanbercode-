@@ -55,7 +55,7 @@ class QuestionController extends Controller
             $question->tag()->attach($tag_save->id);
         }
         //dd($tag_save);
-        return redirect()->route('pertanyaan.index');
+        return redirect('/pertanyaan');
     }
 
     public function show($id)

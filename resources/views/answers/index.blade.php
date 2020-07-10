@@ -91,7 +91,7 @@
 
 
         <button type="button" class="btn btn-sm btn-light">
-            <span class="badge badge-dark">{{$komentar->user->name}}</span> :{{$komentar->content}}
+            <span class="badge badge-dark">{{$komentar->user->name}}</span> : {{$komentar->content}}
         </button><br>
         @endforeach
     </p>
