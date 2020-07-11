@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Profile;
-use App\Question;
-use App\Answer;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
@@ -18,12 +16,9 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        $profile = Profile::where('user_id','=',Auth::user()->id)->first();
-        //dd($profile);
-        $question = Question::where('user_id',Auth::user()->id)->count();
-        $answer = Answer::where('user_id',Auth::user()->id)->count();
-        //dd($answer);
-        return view('profile.index', compact('profile','question','answer'));
+        $detail = Profile::get_profile(Auth::user()->id);
+        //dd($detail);
+        return view('profile.index', $detail);
     }
 
     /**
@@ -64,13 +59,9 @@ class ProfileController extends Controller
     public function show($id)
     {
         //
-        $profile = Profile::where('user_id','=',$id)->first();
-        //dd($profile);
-        $question = Question::where('user_id',$id)->count();
-        $answer = Answer::where('user_id',$id)->count();
-        $user = User::where('id',$id)->first();
-        //dd($answer);
-        return view('profile.show', compact('profile','question','answer','user'));
+        $detail = Profile::get_profile($id);
+        //dd($detail);
+        return view('profile.show', $detail);
     }
 
     /**
@@ -113,5 +104,10 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function rank(){
+        $user = User::orderBy('point', 'desc')->get();
+        //dd($user);
+        return view('profile.rank', compact('user'));
     }
 }

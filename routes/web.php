@@ -45,5 +45,6 @@ Route::get('pertanyaan', 'QuestionController@index')->name('index');
 Route::get('tag/{id}', 'QuestionController@tag')->name('tag');
 Route::get('pertanyaan/{id}', 'QuestionController@show');
 Route::get('profile/{id}', 'ProfileController@show');
+Route::get('rank', 'ProfileController@rank');
 // Route::get('pertanyaan/{id}/edit', 'QuestionController@edit');
 // Route::delete('pertanyaan/{id}/delete', 'QuestionController@destroy');

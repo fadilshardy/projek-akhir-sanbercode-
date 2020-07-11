@@ -14,11 +14,12 @@
             <ul class="list-group list-group-flush">
                 @foreach ($user as $key => $pengguna)
                     
-            <li class="list-group-item">{{$key+1}}</i> {{$pengguna->name}} ({{$pengguna->point}}) <i class="fa {{($key+1==1)?'fa-star':''}}" aria-hidden="true"></i></li>
+            <li class="list-group-item">{{$key+1}}.</i> <a href="profile/{{$pengguna->id}}">{{$pengguna->name}} ({{$pengguna->point}}) <i class="fa {{($key+1==1)?'fa-star':''}}" aria-hidden="true"></a></i></li>
 
                 
                 @endforeach
             </ul>
+            <a href="/rank" class="btn btn-sm btn-default">See more...</a>
         </div>
     </div>
 </div>
