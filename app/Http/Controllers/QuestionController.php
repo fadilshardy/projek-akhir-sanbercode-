@@ -71,7 +71,7 @@ class QuestionController extends Controller
             $question->tag()->attach($tag_save->id);
         }
         //dd($tag_save);
-        return redirect('/pertanyaan');
+        return redirect('pertanyaan/' . $question->id)->with('status', 'Pertanyaan berhasil di buat!');
     }
 
     public function show($id)
@@ -92,9 +92,8 @@ class QuestionController extends Controller
                 }
             }
             //dd($upvote-$downvote);
-            return $upvote-$downvote;
-            
-            
+            return $upvote - $downvote;
+
         })->sortByDesc('is_right_answer');
         $commentq = Comment_Question::where('question_id', '=', $id)->get();
         $commenta = [];

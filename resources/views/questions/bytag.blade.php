@@ -15,13 +15,13 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 my-1">
-                                <h6 class="mb-0">Menampilkan pertanyaan dengan tag: <i class="fa fa-hashtag" aria-hidden="true"></i>{{$title}}
+                                <h6 class="text-light-blue mb-0">Menampilkan pertanyaan dengan tag: <i class="fa fa-hashtag" aria-hidden="true"></i>{{$title}}
                                 
                                 </h6>
                                 </div>
     
                                 <div class="col-sm-12 col-md-6 my-1" >
-                                    <p class="d-inline-block mb-0">
+                                    <p class="text-light-blue d-inline-block mb-0">
                                         Ingin membuat pertanyaan baru?
                                     </p>
                                     @auth
@@ -44,9 +44,11 @@
                             <div id="question" href="" class="col-sm-12 row">
                                 <div class="col-sm-12 col-md-9">
                                     <h5 class="card-subtitle">
-                                        <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
+                                        <a class="question-title" href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
                                     </h5><br>
-                                    <p class="card-text font-weight-light text-muted">Pembuat: {{$item->user->name}} {{$item->answers_count}}</p>
+                                    <p class="card-text font-weight-light text-muted">Pembuat: {{$item->user->name}} {
+                                        {{-- {$item->answers_count}} --}}
+                                    </p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)
                                         <a href="/tag/{{$tag_question->id}}" class="btn btn-info btn-sm my-1">

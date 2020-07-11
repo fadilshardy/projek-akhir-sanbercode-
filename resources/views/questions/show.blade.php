@@ -3,15 +3,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-sm-12 col-md-9">
             <a href="/pertanyaan" class="btn btn-secondary btn-sm mb-3"><i class="fa fa-arrow-left
                 "></i> Kembali</a>
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-12 col-md-6 my-auto">
-                            Pertanyaan oleh: <a href="/profile/{{$question->user->id}}">{{$question->user->name}} </a>
-                            
+                            Pertanyaan oleh: <a class="card-text question-title" href="/profile/{{$question->user->id}}">{{$question->user->name}} </a>
+
                             <br>
                             @if ($question->is_author())
                             <a href="{{$question->id}}/edit" class="btn btn-xs btn-warning">Edit</a>
@@ -52,7 +52,7 @@
                     </p>
                     @else
                     <h6 class="mb-2 font-weight-bold">
-                        <i class="fa fa-comments" aria-hidden="true"></i> Komentar({{count($commentq)}}):
+                        <i class="fa fa-comments" aria-hidden="true"></i> Komentar ({{count($commentq)}}):
                     </h6>
                     @endif
                     <p>
@@ -66,13 +66,12 @@
                         @csrf
                         <input type="hidden" name="question_id" value="{{$question->id}}">
                         <div class="row">
-                            <div class="col-lg-12 ">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control input-sm"
+                            <div class="col-sm-12 comment px-0">
+                                <div class="input-group input-group-sm ml-2">
+                                    <input type="text" required class="form-control input-sm"
                                         placeholder="Tambahkan komentar ..." name="content">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary btn-sm ml-2" type="submit">Submit</button>
-                                    </span>
+                                    <button class="btn btn-light btn-sm ml-2" type="submit"><i
+                                            class="fa fa-share fa-rotate-180" aria-hidden="true"></i> Enter</button>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +84,7 @@
                     <hr class="my-2">
                     <hr>
                     <h6 class="my-2 font-weight-bold">
-                        <i class="fa fa-reply" aria-hidden="true"></i> <span id="jumlah"></span> jawaban
+                        <i class="fa fa-reply" aria-hidden="true"></i> <span id="jumlah"></span> Jawaban
                         ({{$question->answers_count}}):
                     </h6>
                     @foreach ($answer as $jawaban)
@@ -174,3 +173,19 @@
     const jawab = document.getElementById('jumlah');
 </script>
 @endpush
+
+@if (session('status'))
+@push('scripts')
+<script>
+    Swal.fire({
+        text: '{{ session('status') }}',
+        icon: 'success',
+        toast: true,
+        position: 'top-end',
+        timer: 3000,
+        timerProgressBar: true,
+        confirmButtonText: 'close'
+    });
+</script>
+@endpush
+@endif

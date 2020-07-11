@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@if (session('status'))
-<div class="alert alert-danger">
-    {{ session('status') }}
-</div>
-@endif
+
 
 <div class="container">
     <div class="row">
@@ -21,11 +17,11 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 my-1">
-                                    <h4 class="mb-0">Kumpulan Pertanyaan</h4>
+                                    <h4 class="text-light-blue mb-0">Kumpulan Pertanyaan</h4>
                                 </div>
 
                                 <div class="col-sm-12 col-md-6 my-1">
-                                    <p class="d-inline-block mb-0">
+                                    <p class="text-light-blue d-inline-block mb-0">
                                         Ingin membuat pertanyaan baru?
                                     </p>
                                     @auth
@@ -48,11 +44,12 @@
                             <div id="question" href="" class="col-sm-12 row">
                                 <div class="col-sm-12 col-md-9">
                                     <h5 class="card-subtitle">
-                                        <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
+                                        <a class="question-title" href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
                                     </h5><br>
-                                    <p class="card-text font-weight-light text-muted">Pembuat: <a
+                                    <p class="card-text font-weight-light text-muted">Pembuat: <a class="question-title"
                                             href="/profile/{{$item->user->id}}">{{$item->user->name}}</a>
-                                        {{$item->answers_count}}</p>
+                                        {{-- {{$item->answers_count}} --}}
+                                    </p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)
                                         <a href="/tag/{{$tag_question->id}}" class="btn btn-info btn-sm my-1">
@@ -76,3 +73,15 @@
     </div>
 </div>
 @endsection
+
+@if (session('status'))
+@push('scripts')
+<script>
+    Swal.fire({
+        text: '{{ session('status') }}',
+        icon: 'error',
+        confirmButtonText: 'close'
+    });
+</script>
+@endpush
+@endif
