@@ -1,15 +1,17 @@
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs mt-2">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#question">Pertanyaan</a>
+      <a class="nav-link active" data-toggle="tab" href="#question">Pertanyaan ({{count($user->question)}})</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#answer">Jawaban</a>
+      <a class="nav-link" data-toggle="tab" href="#answer">Jawaban ({{count($user->answer)}})</a>
     </li>
   </ul>
   
   
   <div class="tab-content border">
-    <div class="tab-pane container active" id="question">@foreach ($user->question as $question)
+    <div class="tab-pane container active" id="question">
+      @if (!$user->question->isEmpty())
+      @foreach ($user->question as $question)
           
         <div class="card my-2 shadow-sm">
             <div class="card-header">
@@ -23,8 +25,17 @@
         </div>
         </div>
         
-        @endforeach</div>
-    <div class="tab-pane container fade" id="answer">@foreach ($user->answer as $answer)
+        @endforeach
+        
+      @else
+      <div class="alert alert-dark mt-2" role="alert">
+        Pengguna belum pernah bertanya.
+      </div>
+        @endif
+      </div>
+    <div class="tab-pane container fade" id="answer">
+      @if (!$user->answer->isEmpty())
+      @foreach ($user->answer as $answer)
           
         <div class="card my-2 shadow-sm">
             <div class="card-header">
@@ -37,6 +48,12 @@
         </div>
         </div>
         
-        @endforeach</div>
+        @endforeach
+        @else
+        <div class="alert alert-dark mt-2" role="alert">
+          Pengguna belum pernah menjawab.
+        </div>
+          @endif
+      </div>
   </div>
   

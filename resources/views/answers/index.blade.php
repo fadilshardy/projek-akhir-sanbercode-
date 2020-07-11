@@ -170,10 +170,11 @@
         <br>
 
         @endforeach
+        @auth
         <form action="/komentar_jawaban" method="post">
             @csrf
             <input type="hidden" name="answer_id" value="
-            @auth {{$jawaban->id}} @endauth">
+             {{$jawaban->id}} ">
             <div class="row">
                 <div class="col-sm-12 comment px-0">
                     <div class="input-group input-group-sm ml-2">
@@ -186,6 +187,7 @@
             </div>
 
         </form>
+        @endauth
     </p>
 </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="col-sm-3">
     <div class="card">
-        <div class="text-light-blue card-header">Explore by Tags</div>
+        <div class="text-light-blue card-header">Cari Berdasarkan Tag</div>
         <div class="card-body">
             @foreach ($tag as $taging)
             <a href="/tag/{{$taging->id}}" class="btn btn-sm border mt-1">                          
@@ -9,17 +9,18 @@
         </div>
     </div>
     <div class="card mt-2">
-        <div class="text-light-blue card-header">Top 5 Most Active User</div>
+        <div class="text-light-blue card-header">Anggota Paling Aktif</div>
         <div class="card-body">
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush ">
                 @foreach ($user as $key => $pengguna)
                     
-            <li class="list-group-item">{{$key+1}}.</i> <a href="profile/{{$pengguna->id}}">{{$pengguna->name}} ({{$pengguna->point}}) <i class="fa {{($key+1==1)?'fa-star':''}}" aria-hidden="true"></a></i></li>
+            <li class="list-group-item border-bottom mb-1 d-flex justify-content-between align-items-center"><a href="profile/{{$pengguna->id}}">{{$key+1}}.</i> {{$pengguna->name}} </a></i> 
+                <span class="badge badge-{{($pengguna->point>=0)?'success':'danger'}} badge-pill">{{$pengguna->point}}</span></li>
 
                 
                 @endforeach
             </ul>
-            <a href="/rank" class="btn btn-sm btn-default">See more...</a>
+            <a href="/rank" class="btn btn-sm btn-light shadow-sm border mt-1">See more...</a>
         </div>
     </div>
 </div>

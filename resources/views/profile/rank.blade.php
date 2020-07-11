@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Ranking Pengguna</div>
+                <div class="card-header">Ranking Anggota</div>
                 <div class="card-body justify-content-center">
                     
                     <table class="table table-striped">
