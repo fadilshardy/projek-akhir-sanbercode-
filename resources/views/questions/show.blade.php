@@ -96,38 +96,8 @@
                     @endauth
                 </div>
             </div>
-
-            {{-- <div class="card mt-3">
-                <div class="card-header bg-secondary text-white">
-                    Komentar:
-                </div>
-
-                <div class="card-body">
-                    @if ($commentq->isEmpty())
-                    <p class="text-center mb-2">
-                        Belum terdapat komentar
-                    </p>
-                    @endif
-                    <p class='border'>
-                        @foreach ($commentq as $comment)
-                        @include('questions.comment.show')
-                        @endforeach
-
-                    </p>
-                    @auth
-                    <form action="/komentar_pertanyaan" method="post">
-                        @csrf
-                        <input type="hidden" name="question_id" value="{{$question->id}}">
-            <input type="text" class="form-control form-control-sm mt-2" name="content"
-                placeholder="Tekan tombol Enter untuk memberi komentar...">
-            </form>
-            @endauth
         </div>
-    </div> --}}
-
-
-</div>
-</div>
+    </div>
 </div>
 
 <div id="myModal" class="modal fade" role="dialog">
