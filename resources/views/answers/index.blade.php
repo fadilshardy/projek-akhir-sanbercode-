@@ -108,7 +108,7 @@
             @if ($jawaban->comment->isEmpty())
             <small><em>Belum terdapat komentar</em></small>
             @else
-            <small class="font-weight-bold">Komentar({{count($jawaban->comment)}}):</small> <br>
+            <small class="font-weight-bold">Komentar ({{count($jawaban->comment)}}):</small> <br>
             @endif
             @foreach ($jawaban->comment as $komentar)
 
@@ -125,13 +125,11 @@
             <input type="hidden" name="answer_id" value="
             @auth {{$jawaban->id}} @endauth">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group input-group-sm">
-                        <input type="text" class="form-control input-sm" placeholder="Tambahkan komentar ..."
-                            name="content">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary btn-sm ml-2" type="submit">Submit</button>
-                        </span>
+                <div class="col-sm-12 comment px-0">
+                    <div class="input-group input-group-sm ml-2">
+                        <input type="text" required class="form-control input-sm"
+                            placeholder="Tambahkan komentar ..." name="content">
+                        <button class="btn btn-light btn-sm ml-2" type="submit"><i class="fa fa-share fa-rotate-180" aria-hidden="true"></i> Enter</button>
                     </div>
                 </div>
             </div>

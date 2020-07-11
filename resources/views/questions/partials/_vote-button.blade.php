@@ -2,10 +2,11 @@
     <div class="row">
         <div class="col-sm-6 text-lg-right my-1">
             @if($item->is_author())
-            <button class="btn btn-lg btn-vote {{$item->vote_status() ? 'bg-success' : ''}}" @guest
+            <button class="btn btn-md btn-vote {{$item->vote_status() ? 'bg-success' : ''}}" @guest
                 onclick="alert('Login terlebih dahulu!')" @endguest>
                 <h5 >{{$item->upvote_count()}}</h5>
-                <div class="mt-2 arrow-up"></div>
+                {{-- <div class="mt-2 arrow-up"></div> --}}
+                <i class="fa fa-caret-up" aria-hidden="true"></i>
             </button>
             @else
             @auth
@@ -13,10 +14,10 @@
                 method="POST">
                 @csrf
                 @endauth
-                <button class="btn btn-lg btn-vote {{$item->vote_status() ? 'bg-success' : ''}}" @guest
+                <button class="btn btn-md btn-vote {{$item->vote_status() ? 'bg-success' : ''}}" @guest
                     onclick="alert('Login terlebih dahulu!')" @endguest>
                     <h5>{{$item->upvote_count()}}</h5>
-                    <div class="mt-2 arrow-up"></div>
+                    <i class="fa fa-caret-up" aria-hidden="true"></i>
                 </button>
                 @auth
             </form>
@@ -26,9 +27,10 @@
 
         <div class="col-sm-6 text-lg-left my-1">
             @if($item->is_author())
-            <button class="btn btn-lg btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}">
+            <button class="btn btn-md btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}">
                 <h5>{{$item->downvote_count()}}</h5>
-                <div class="mb-2 arrow-down"></div>
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                {{-- <div class="mb-2 arrow-down"></div> --}}
             </button>
             @else
             @auth
@@ -36,10 +38,10 @@
                 method="POST">
                 @csrf
                 @endauth
-                <button class="btn btn-lg btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}" @guest
+                <button class="btn btn-md btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}" @guest
                     onclick="alert('Login terlebih dahulu!')" @endguest>
                     <h5>{{$item->downvote_count()}}</h5>
-                    <div class="mb-2 arrow-down"></div>
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </button>
                 @auth
             </form>

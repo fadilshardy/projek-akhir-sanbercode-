@@ -1740,7 +1740,7 @@ pre code {
   background-color: #fff;
   border-color: #bac8f3;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  /* box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25); */
 }
 
 .form-control::-webkit-input-placeholder {
@@ -11134,4 +11134,31 @@ div.arrow-up {
 .slideIn {
   -webkit-animation-name: slideIn;
   animation-name: slideIn;
+}
+
+.comment .input-group input {
+  border: 0;
+  border-radius: 0.5rem;
+}
+
+.comment .input-group {
+  border: 1px solid #d1d3e2;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  width: 98% !important;
+}
+
+.comment .input-group:hover {
+  box-shadow: 0 0 0 0.15rem rgba(78, 115, 223, 0.25);
+}
+
+.comment button[type="submit"] {
+  /* box-shadow: 12px 0 15px -4px rgba(31, 73, 125, 0.8); */
+  background-color: #dde2f1;
+  border-color: #dde2f1;
+}
+
+.comment button[type="submit"]:hover {
+  background-color: #d2d9ee;
+  border-color: #d2d9ee;
 }
