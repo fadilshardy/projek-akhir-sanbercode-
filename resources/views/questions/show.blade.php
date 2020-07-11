@@ -10,8 +10,8 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-12 col-md-6 my-auto">
-                            <a class="card-text question-title" href="/profile/{{$question->user->id}}">{{$question->user->name}} </a>
-                            
+                            Pertanyaan oleh: <a class="card-text question-title" href="/profile/{{$question->user->id}}">{{$question->user->name}} </a>
+
                             <br>
                             @if ($question->is_author())
                             <a href="{{$question->id}}/edit" class="btn btn-xs btn-warning">Edit</a>
@@ -70,7 +70,8 @@
                                 <div class="input-group input-group-sm ml-2">
                                     <input type="text" required class="form-control input-sm"
                                         placeholder="Tambahkan komentar ..." name="content">
-                                    <button class="btn btn-light btn-sm ml-2" type="submit"><i class="fa fa-share fa-rotate-180" aria-hidden="true"></i> Enter</button>
+                                    <button class="btn btn-light btn-sm ml-2" type="submit"><i
+                                            class="fa fa-share fa-rotate-180" aria-hidden="true"></i> Enter</button>
                                 </div>
                             </div>
                         </div>
@@ -172,3 +173,19 @@
     const jawab = document.getElementById('jumlah');
 </script>
 @endpush
+
+@if (session('status'))
+@push('scripts')
+<script>
+    Swal.fire({
+        text: '{{ session('status') }}',
+        icon: 'success',
+        toast: true,
+        position: 'top-end',
+        timer: 3000,
+        timerProgressBar: true,
+        confirmButtonText: 'close'
+    });
+</script>
+@endpush
+@endif
