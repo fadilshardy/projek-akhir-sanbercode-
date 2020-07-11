@@ -42,6 +42,7 @@ Route::post('/pertanyaan/{question}/downvote', 'QuestionController@downvote');
 Route::post('/pertanyaan/{question}/unvote/{status}', 'QuestionController@unvote');
 });
 Route::get('pertanyaan', 'QuestionController@index')->name('index');
+Route::post('pertanyaan/cari', 'QuestionController@search');
 Route::get('tag/{id}', 'QuestionController@tag')->name('tag');
 Route::get('pertanyaan/{id}', 'QuestionController@show');
 Route::get('profile/{id}', 'ProfileController@show');

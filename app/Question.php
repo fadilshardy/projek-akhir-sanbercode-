@@ -14,6 +14,46 @@ class Question extends Model
     }
     protected $guarded = [];
 
+    public static function get_data(){
+        $question = Question::withCount('answers')->get();
+        $question = $question->sortByDesc(function ($question) {
+            $downvote = 0;
+            $upvote = 0;
+            foreach ($question->votes as $vote) {
+                if ($vote->voted == 0) {
+                    $downvote += 1;
+
+                } else {
+                    $upvote += 1;
+                }
+            }
+            //dd($upvote-$downvote);
+            return $upvote - $downvote;
+        });
+        return $question;
+    }
+    public static function search_data($param,$selector,$value){
+        if($selector=="in"){
+        $question = Question::whereIn($param,$value)->withCount('answers')->get();
+    }else{
+        $question = Question::where($param,$selector,$value)->withCount('answers')->get();
+    }
+        $question = $question->sortByDesc(function ($question) {
+            $downvote = 0;
+            $upvote = 0;
+            foreach ($question->votes as $vote) {
+                if ($vote->voted == 0) {
+                    $downvote += 1;
+
+                } else {
+                    $upvote += 1;
+                }
+            }
+            //dd($upvote-$downvote);
+            return $upvote - $downvote;
+        });
+        return $question;
+    }
     public function is_author()
     {
         return $this->user->id == auth()->id();

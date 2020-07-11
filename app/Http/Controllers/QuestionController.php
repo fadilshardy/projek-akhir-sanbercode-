@@ -14,28 +14,15 @@ class QuestionController extends Controller
 {
     public function index()
     {
-
-        $question = Question::withCount('answers')->get();
-        $question = $question->sortByDesc(function ($question) {
-            $downvote = 0;
-            $upvote = 0;
-            foreach ($question->votes as $vote) {
-                if ($vote->voted == 0) {
-                    $downvote += 1;
-
-                } else {
-                    $upvote += 1;
-                }
-            }
-            //dd($upvote-$downvote);
-            return $upvote - $downvote;
-        });
+        $title = '';
+        $question = Question::get_data();
         $user = User::orderBy('point', 'desc')->take(5)->get();
         $tag = Tag::all();
         return view('questions.index', [
             'questions' => $question,
             'tag' => $tag,
             'user' => $user,
+            'title' => $title,
             // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
         ]);
     }
@@ -166,31 +153,31 @@ class QuestionController extends Controller
         return redirect('/pertanyaan');
     }
 
-    public function tag($id)
-    {$tag_search = Tag::find($id);
+    public function tag($id){
+        $tag_search = Tag::find($id);
         $title = $tag_search->tag_name;
         $id_question = [];
         foreach ($tag_search->question as $idq) {
             $id_question[] = $idq->id;
         }
-        $question = Question::whereIn('id', $id_question)->withCount('answers')->get();
-        $question = $question->sortByDesc(function ($question) {
-            $downvote = 0;
-            $upvote = 0;
-            foreach ($question->votes as $vote) {
-                if ($vote->voted == 0) {
-                    $downvote += 1;
-
-                } else {
-                    $upvote += 1;
-                }
-            }
-            //dd($upvote-$downvote);
-            return $upvote - $downvote;
-        });
+        $question = Question::search_data('id','in',$id_question);
         $user = User::orderBy('point', 'desc')->take(5)->get();
         $tag = Tag::all();
-        return view('questions.bytag', [
+        return view('questions.index', [
+            'questions' => $question,
+            'tag' => $tag,
+            'title' => $title,
+            'user' => $user,
+            // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
+        ]);
+    }
+    public function search(Request $request){
+        $question = Question::search_data('title','like','%'.$request['query'].'%');
+        //dd($question);
+        $user = User::orderBy('point', 'desc')->take(5)->get();
+        $tag = Tag::all();
+        $title = $request['query'];
+        return view('questions.index', [
             'questions' => $question,
             'tag' => $tag,
             'title' => $title,

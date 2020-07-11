@@ -39,17 +39,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto ">
+                        <form action="/pertanyaan/cari" method="POST">
+                            @csrf
+                        <input type="text" class="form-control" placeholder="Masukkan kata kunci" name="query">
+                        </form>
 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="/pertanyaan">Forum</a>
                         </li>
-                        @guest
+                                                @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>

@@ -17,7 +17,18 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 my-1">
-                                    <h4 class="text-light-blue mb-0">Kumpulan Pertanyaan</h4>
+                                    
+                                        @if (empty($title))
+                                        <h5 class="text-light-blue mb-0">
+                                        Kumpulan Pertanyaan
+                                    </h5>
+                                        @else
+                                        <h6 class="text-light-blue mb-0">
+                                        Menampilkan pertanyaan dengan judul: {{$title}}
+                                    </h6>
+                                        @endif
+                                        
+                                    
                                 </div>
 
                                 <div class="col-sm-12 col-md-6 my-1">
