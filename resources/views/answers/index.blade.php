@@ -27,9 +27,11 @@
                         @include('answers.partials._vote_form')
                         @endif
                         <hr class="my-1">
+                        @auth
                         @if ($question->user_id==Auth::user()->id)
                         @include('answers.partials._auth_button')
                         @endif
+                        @endauth
                         @if ($jawaban->is_author())
                         <form class="" action="/jawaban/{{$jawaban->id}}" method="POST">
                             @csrf

@@ -5,7 +5,6 @@
             @csrf
             <input type="hidden" name="question_id" value="{{$question->id}}">
             <div class="form-group">
-                {{-- <label for="content">Jawaban</label> --}}
                 <textarea name="content" class="form-control" id="content" cols="5" rows="5"></textarea>
             </div>
 
