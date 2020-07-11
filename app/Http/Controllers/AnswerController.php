@@ -134,8 +134,8 @@ class AnswerController extends Controller
 
     public function downvote(Answer $answer)
     {
-        $answer->downvote();
-        return redirect('pertanyaan/' . $answer->question_id);
+        $downvote = $answer->downvote();
+        return redirect('pertanyaan/' . $answer->question_id)->with('error', $downvote);
     }
 
     public function unvote(Answer $answer, $status)

@@ -19,7 +19,8 @@ class Answer extends Model
     {
         return $this->belongsTo('\App\User');
     }
-    public function comment_on_answer(){
+    public function comment_on_answer()
+    {
         return $this->hasMany('App\Comment_Answer');
     }
 
@@ -82,8 +83,12 @@ class Answer extends Model
         $question = $this->votes()->where('user_id', auth()->id())
             ->where('answer_id', $this->id);
 
+        $user = User::find(auth()->id());
+
         if ($question->exists()) {
             return $this->unvote('upvote');
+        } else if ($user->point <= 15) {
+            return "anda tidak memiliki point yang cukup untuk melakukan downvote";
         } else {
             $this->votes()->updateOrCreate([
                 'user_id' => auth()->id(),

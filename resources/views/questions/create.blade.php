@@ -44,7 +44,7 @@
         language: 'en-gb'
     });
     CKEDITOR.config.allowedContent = true;
-    CKEDITOR.instances.editor1.document.getBody().getText()
+    CKEDITOR.instances.editor1.document.getBody().getText();
 
 </script>
 @endpush

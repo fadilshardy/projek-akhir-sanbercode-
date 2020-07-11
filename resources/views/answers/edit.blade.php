@@ -26,3 +26,16 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+<script>
+    var konten = document.getElementById("content");
+    CKEDITOR.replace(content, {
+        language: 'en-gb'
+    });
+    CKEDITOR.config.allowedContent = true;
+    CKEDITOR.instances.editor1.document.getBody().getText();
+
+</script>
+@endpush
