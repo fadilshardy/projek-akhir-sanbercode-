@@ -14,7 +14,7 @@
             <ul class="list-group list-group-flush ">
                 @foreach ($user as $key => $pengguna)
                     
-            <li class="list-group-item border-bottom mb-1 d-flex justify-content-between align-items-center"><a href="profile/{{$pengguna->id}}">{{$key+1}}.</i> {{$pengguna->name}} </a></i> 
+            <li class="list-group-item border-bottom px-1 mb-1 d-flex justify-content-between align-items-center card-text"><a class=" question-title" href="profile/{{$pengguna->id}}">{{$key+1}}.</i> {{$pengguna->name}} </a></i> 
                 <span class="badge badge-{{($pengguna->point>=0)?'success':'danger'}} badge-pill">{{$pengguna->point}}</span></li>
 
                 

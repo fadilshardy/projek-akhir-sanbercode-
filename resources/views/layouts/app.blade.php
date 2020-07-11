@@ -39,13 +39,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto ">
-                        <form action="/pertanyaan/cari" method="POST">
+                    <div class="navbar-nav my-2 search-nav ml-auto  comment">
+                        <form class="mx-auto w-100" action="/pertanyaan/cari" method="POST">
                             @csrf
-                        <input type="text" class="form-control" placeholder="Masukkan kata kunci" name="query">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control input-sm d-inline-block py-0 pr-0" placeholder="Masukkan kata kunci" name="query">
+                                <button class="btn btn-light btn-sm d-inline-block" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </div>
                         </form>
-
-                    </ul>
+                    </div>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

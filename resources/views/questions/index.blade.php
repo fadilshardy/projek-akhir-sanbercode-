@@ -16,10 +16,10 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 my-1">
+                                <div class="col-sm-12 col-md-6 my-auto">
                                     
                                         @if (empty($title))
-                                        <h5 class="text-light-blue mb-0">
+                                        <h5 class="text-light-blue mb">
                                         Kumpulan Pertanyaan
                                     </h5>
                                         @else

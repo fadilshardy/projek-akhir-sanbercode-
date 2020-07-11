@@ -1,6 +1,6 @@
 <div class="col-sm-12 col-md-3 summary">
     <div class="row">
-        <div class="col-sm-6 text-lg-right my-1">
+        <div class="col-sm-6 text-md-right my-1">
             @if($item->is_author())
             <button class="btn btn-md btn-vote {{$item->vote_status() ? 'bg-success' : ''}}" @guest
                 onclick="alert('Login terlebih dahulu!')" @endguest>
@@ -25,7 +25,7 @@
             @endif
         </div>
 
-        <div class="col-sm-6 text-lg-left my-1">
+        <div class="col-sm-6 text-md-left my-1">
             @if($item->is_author())
             <button class="btn btn-md btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}">
                 <h5>{{$item->downvote_count()}}</h5>
@@ -50,7 +50,7 @@
         </div>
 
         <div class="col-sm-12 text-center">
-            <button class="btn btn-sm btn-success mt-1">Total answers: {{$item->answers_count}}</button>
+            <button class="btn btn-sm btn-success btn-block mt-1">Total answers: {{$item->answers_count}}</button>
 
         </div>
     </div>
