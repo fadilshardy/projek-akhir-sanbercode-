@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+
 class AnswerController extends Controller
 {
     /**
@@ -47,7 +48,7 @@ class AnswerController extends Controller
             'user_id' => Auth::user()->id,
             'is_right_answer' => 0,
         ]);
-        return redirect('/pertanyaan/' . $request['question_id']);
+        return redirect('/pertanyaan/' . $request['question_id'])->with('status', 'Komentar berhasil dibuat!');
     }
 
     /**
@@ -110,14 +111,14 @@ class AnswerController extends Controller
         //dd($request->all());
         $cek = Answer::find($id);
         $user = User::find($cek->user_id);
-        if($cek->is_right_answer==0){
-            $update_point = User::where('id','=',$cek->user_id)->update([
-                'point'=>$user->point+15
-        ]);
-        }else{
-            $update_point = User::where('id','=',$cek->user_id)->update([
-                'point'=>$user->point-15
-        ]);
+        if ($cek->is_right_answer == 0) {
+            $update_point = User::where('id', '=', $cek->user_id)->update([
+                'point' => $user->point + 15,
+            ]);
+        } else {
+            $update_point = User::where('id', '=', $cek->user_id)->update([
+                'point' => $user->point - 15,
+            ]);
         }
         $answer = Answer::Where('id', '=', $id)->update([
             'is_right_answer' => $request['is_right_answer'],

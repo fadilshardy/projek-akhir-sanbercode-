@@ -70,7 +70,8 @@
                                 <div class="input-group input-group-sm ml-2">
                                     <input type="text" required class="form-control input-sm"
                                         placeholder="Tambahkan komentar ..." name="content">
-                                    <button class="btn btn-light btn-sm ml-2" type="submit"><i class="fa fa-share fa-rotate-180" aria-hidden="true"></i> Enter</button>
+                                    <button class="btn btn-light btn-sm ml-2" type="submit"><i
+                                            class="fa fa-share fa-rotate-180" aria-hidden="true"></i> Enter</button>
                                 </div>
                             </div>
                         </div>
@@ -179,6 +180,10 @@
     Swal.fire({
         text: '{{ session('status') }}',
         icon: 'success',
+        toast: true,
+        position: 'top-end',
+        timer: 3000,
+        timerProgressBar: true,
         confirmButtonText: 'close'
     });
 </script>
