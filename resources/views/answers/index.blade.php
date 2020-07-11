@@ -1,10 +1,10 @@
-<div class="card mt-2 ">
-    <div class="card-header {{$jawaban->is_right_answer ? 'bg-success text-light' : ''}}">
+<div class="card mt-2 shadow-sm">
+    <div class="card-header {{$jawaban->is_right_answer ? 'bg-light text-light border-success' : ''}}">
         <div class="row">
             <div class="col-sm-6 my-1">
                 <a class=" {{$jawaban->is_right_answer ? 'question-correct' : 'question-title'}}"
                     href="/profile/{{$jawaban->user->id}}"
-                    class="{{$jawaban->is_right_answer ? 'text-light' : ''}}">{{$jawaban->user->name}}</a><br>
+                    class="{{$jawaban->is_right_answer ? 'text-light' : ''}}">{{$jawaban->user->name}}</a> <span class="{{$jawaban->is_right_answer ? 'question-title ' : 'd-none'}}"><i class="fa fa-check-circle"></i> </span><br>
                 <span style="font-size: 12px"
                     class="{{$jawaban->is_right_answer ? 'question-correct' : 'text-secondary'}}">
                     @if ($jawaban->created_at==$jawaban->updated_at)
@@ -15,46 +15,45 @@
             </div>
 
             <div class="col-sm-6 my-auto text-sm-right">
-                @if ($jawaban->is_author())
+                {{-- @if ($jawaban->user_id==Auth::user()->id)
+                        @include('answers.partials._vote_button')
+                @else
+                        @include('answers.partials._vote_form')
+                @endif --}}
+                @auth
+                
                 <div class="dropdown">
+                    @if ($jawaban->is_author()||$question->user_id==Auth::user()->id)
                     <button
-                        class="btn btn-primary {{$jawaban->is_right_answer ? 'question-correct' : ''}} dropdown-toggle "
+                        class="btn btn-primary {{$jawaban->is_right_answer ? 'question-correct' : ''}} dropdown-toggle btn-xs"
                         type="button" data-toggle="dropdown"><i class="fa fa-cog"></i>
                         <span class="caret"></span>
                     </button>
-                    
+                    @endif
                     <ul class="dropdown-menu px-2">
-                        @if ($jawaban->is_author() || Auth::guest())
-                        @include('answers.partials._vote_button')
-                        @else
-                        @include('answers.partials._vote_form')
-                        @endif
-                        <hr class="my-1">
-                        @auth
+                        
+                        
                         @if ($question->user_id==Auth::user()->id)
                         @include('answers.partials._auth_button')
                         @endif
-                        @endauth
+                        <hr class="my-1">
+                        
                         @if ($jawaban->is_author())
                         <form class="" action="/jawaban/{{$jawaban->id}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="hidden" name="question_id" value="{{$question->id}}">
                             <button class="btn btn-danger btn-sm btn-block mt-1">
-                                <i class="fa fa-trash"></i>&nbsp; Delete Answer
+                                <i class="fa fa-trash"></i>&nbsp; Hapus
                             </button>
                         </form>
-
                         <li><a class="btn btn-secondary btn-sm btn-block mt-1 text-white"
-                                href="/jawaban/{{$jawaban->id}}/edit"><i class="fa fa-pencil"></i> Edit Answer</a></li>
+                                href="/jawaban/{{$jawaban->id}}/edit"><i class="fa fa-pencil"></i> Edit</a></li>
                         @endif
                     </ul>
                 </div>
-                @else
-                    <div class="answer-public">
-                        @include('answers.partials._vote_button')
-                    </div>
-                @endif
+                
+                @endauth
             </div>
 
         </div>
@@ -100,6 +99,24 @@
             @endauth
         </p>
     </div>
+    <div class="card-footer ">
+        @auth
+        @if ($jawaban->user_id==Auth::user()->id)
+                    <div class="answer-public">
+                        @include('answers.partials._vote_button')
+                    </div>
+                @else
+                <div class="answer-public">
+                    @include('answers.partials._vote_form')
+                </div>
+                @endif
+        @endauth
+        @guest
+        <div class="answer-public">
+            @include('answers.partials._vote_button')
+        </div>
+        @endguest
+      </div>
 </div>
 
 @if (session('error'))

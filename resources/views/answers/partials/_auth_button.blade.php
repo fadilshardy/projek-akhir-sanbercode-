@@ -1,7 +1,6 @@
 <li class="form-dropdown">
-    <span class="{{$jawaban->is_right_answer ? 'question-title ' : 'd-none'}}"><i class="fa fa-check-circle"></i> Marked
-        as right answer<br></span>
-    <i class="{{$jawaban->is_right_answer ? 'd-none' : 'fa fa-question-circle'}}" aria-hidden="true"></i>
+ 
+    <i class="{{$jawaban->is_right_answer ? 'd-none' : 'fa fa-check-circle'}}" aria-hidden="true"></i>
     <form class="{{$jawaban->is_right_answer ? '' : 'd-inline-block'}}  text-center"
         action="/jawaban/{{$jawaban->id}}/right" method="POST">
         @csrf
