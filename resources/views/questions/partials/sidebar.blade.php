@@ -1,6 +1,6 @@
 <div class="col-sm-3">
     <div class="card">
-        <div class="card-header">Explore by Tags</div>
+        <div class="text-light-blue card-header">Explore by Tags</div>
         <div class="card-body">
             @foreach ($tag as $taging)
             <a href="/tag/{{$taging->id}}" class="btn btn-sm border mt-1">                          
@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="card mt-2">
-        <div class="card-header">Top 5 Most Active User</div>
+        <div class="text-light-blue card-header">Top 5 Most Active User</div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
                 @foreach ($user as $key => $pengguna)

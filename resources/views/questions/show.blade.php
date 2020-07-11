@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-12 col-md-6 my-auto">
-                            Pertanyaan oleh: <a href="/profile/{{$question->user->id}}">{{$question->user->name}} </a>
+                            <a class="card-text question-title" href="/profile/{{$question->user->id}}">{{$question->user->name}} </a>
                             
                             <br>
                             @if ($question->is_author())

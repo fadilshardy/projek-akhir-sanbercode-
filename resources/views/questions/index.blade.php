@@ -21,11 +21,11 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 my-1">
-                                    <h4 class="mb-0">Kumpulan Pertanyaan</h4>
+                                    <h4 class="text-light-blue mb-0">Kumpulan Pertanyaan</h4>
                                 </div>
 
                                 <div class="col-sm-12 col-md-6 my-1">
-                                    <p class="d-inline-block mb-0">
+                                    <p class="text-light-blue d-inline-block mb-0">
                                         Ingin membuat pertanyaan baru?
                                     </p>
                                     @auth
@@ -50,7 +50,7 @@
                                     <h5 class="card-subtitle">
                                         <a class="question-title" href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
                                     </h5><br>
-                                    <p class="card-text font-weight-light text-muted">Pembuat: <a
+                                    <p class="card-text font-weight-light text-muted">Pembuat: <a class="question-title"
                                             href="/profile/{{$item->user->id}}">{{$item->user->name}}</a>
                                         {{-- {{$item->answers_count}} --}}
                                     </p>

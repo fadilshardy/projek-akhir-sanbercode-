@@ -15,13 +15,13 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 my-1">
-                                <h6 class="mb-0">Menampilkan pertanyaan dengan tag: <i class="fa fa-hashtag" aria-hidden="true"></i>{{$title}}
+                                <h6 class="text-light-blue mb-0">Menampilkan pertanyaan dengan tag: <i class="fa fa-hashtag" aria-hidden="true"></i>{{$title}}
                                 
                                 </h6>
                                 </div>
     
                                 <div class="col-sm-12 col-md-6 my-1" >
-                                    <p class="d-inline-block mb-0">
+                                    <p class="text-light-blue d-inline-block mb-0">
                                         Ingin membuat pertanyaan baru?
                                     </p>
                                     @auth

@@ -11050,7 +11050,7 @@ body.sidebar-toggled footer.sticky-footer {
 .btn-vote {
   background-color: rgb(45, 151, 238);
   color: white;
-}
+} 
 
 .btn-vote:hover{
   background-color: rgb(18, 126, 214);
@@ -11161,4 +11161,29 @@ div.arrow-up {
 .comment button[type="submit"]:hover {
   background-color: #d2d9ee;
   border-color: #d2d9ee;
+}
+
+.question-title {
+  background: linear-gradient(to right top, #11998e 20%, #38ef7d 80%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#11998e", endColorstr="#38ef7d", GradientType=1);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  font-weight: bold;
+  background-size: 200%;
+  transition: all 0.3s ease-in;
+}
+  
+.question-title:hover {
+  text-decoration: none;
+  background-position: 100%;
+}
+
+.card-text .question-title {
+  font-weight: 500;
+}
+
+.text-light-blue {
+  color: rgb(73, 174, 207);
 }
