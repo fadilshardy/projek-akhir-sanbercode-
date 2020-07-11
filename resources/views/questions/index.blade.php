@@ -48,11 +48,12 @@
                             <div id="question" href="" class="col-sm-12 row">
                                 <div class="col-sm-12 col-md-9">
                                     <h5 class="card-subtitle">
-                                        <a href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
+                                        <a class="question-title" href="/pertanyaan/{{$item->id}}">{{$item->title}}</a>
                                     </h5><br>
                                     <p class="card-text font-weight-light text-muted">Pembuat: <a
                                             href="/profile/{{$item->user->id}}">{{$item->user->name}}</a>
-                                        {{$item->answers_count}}</p>
+                                        {{-- {{$item->answers_count}} --}}
+                                    </p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)
                                         <a href="/tag/{{$tag_question->id}}" class="btn btn-info btn-sm my-1">
