@@ -2321,8 +2321,8 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(151, 153, 166, 0.5);
 }
 
-.btn-success {
-  background-image: linear-gradient(235deg, #1cc88a, #1cc88a 16%, #17a673  32%, #17a673  40%, #3eb646 48%, #3eb646 50%, #3eb646 54%, #8dbc3a 64%, #8dbc3a 72%, #a6e23f 82%, #a6e23f);
+.btn-success { 
+  background-image: linear-gradient(235deg, #049e78, #049e78 16%, #07795c  32%, #07795c  40%, #0d8076 48%, #0d8076 50%, #0d8076 54%, #0d8076 64%, #11998e 72%, #1ec25d 82%, #1ec25d);
   background-position-x: initial;
   background-position-y: initial;
   background-size: 200%;
@@ -11048,12 +11048,14 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .btn-vote {
-  background-color: rgb(45, 151, 238);
+  /* background-color: rgb(45, 151, 238); */
+  background-color: #85bff8;
   color: white;
 } 
 
 .btn-vote:hover{
-  background-color: rgb(18, 126, 214);
+  background-color: rgb(73, 174, 207);
+  /* background-color: rgb(18, 126, 214); */
   color: white;
 }
 
@@ -11135,6 +11137,9 @@ div.arrow-up {
   -webkit-animation-name: slideIn;
   animation-name: slideIn;
 }
+
+.dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
+.dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
 .comment .input-group input {
   border: 0;

@@ -2,7 +2,7 @@
     <div class="card-header {{$jawaban->is_right_answer ? 'bg-success text-light' : ''}}">
         <div class="row">
             <div class="col-sm-12 col-lg-4 my-1">
-                <a href="/profile/{{$jawaban->user->id}}"
+                <a class="question-title" href="/profile/{{$jawaban->user->id}}"
                     class="{{$jawaban->is_right_answer ? 'text-light' : ''}}">{{$jawaban->user->name}}</a><br>
                 <span style="font-size: 12px" class="text-secondary">
                     @if ($jawaban->created_at==$jawaban->updated_at)
@@ -17,7 +17,7 @@
                     <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown"><i
                             class="fa fa-cog"></i>
                         <span class="caret"></span></button>
-                    <ul class="dropdown-menu animate slideIn">
+                    <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
                         <li><a href="#"><i class="fa fa-trash-alt"></i> Hapus</a></li>
                     </ul>

@@ -1,5 +1,5 @@
 <div class="card mt-4 ">
-    <div class="card-header ">Jawaban Anda </div>
+    <div class="text-light-blue card-header ">Jawaban Anda </div>
     <div class="card-body">
         <form action="/jawaban" method="POST">
             @csrf
