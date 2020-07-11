@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-6 my-auto">
                             Pertanyaan oleh: <a href="/profile/{{$question->user->id}}">{{$question->user->name}} </a>
-                            
+
                             <br>
                             @if ($question->is_author())
                             <a href="{{$question->id}}/edit" class="btn btn-xs btn-warning">Edit</a>
@@ -174,3 +174,15 @@
     const jawab = document.getElementById('jumlah');
 </script>
 @endpush
+
+@if (session('status'))
+@push('scripts')
+<script>
+    Swal.fire({
+        text: '{{ session('status') }}',
+        icon: 'success',
+        confirmButtonText: 'close'
+    });
+</script>
+@endpush
+@endif

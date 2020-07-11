@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@if (session('status'))
-<div class="alert alert-danger">
-    {{ session('status') }}
-</div>
-@endif
+
 
 <div class="container">
     <div class="row">
@@ -76,3 +72,15 @@
     </div>
 </div>
 @endsection
+
+@if (session('status'))
+@push('scripts')
+<script>
+    Swal.fire({
+        text: '{{ session('status') }}',
+        icon: 'error',
+        confirmButtonText: 'close'
+    });
+</script>
+@endpush
+@endif
