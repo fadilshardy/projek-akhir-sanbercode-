@@ -11247,3 +11247,35 @@ div.arrow-up {
   text-decoration: none;
   background-position: 100%;
 }
+
+.answer-public li {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.answer-public li:nth-child(1) a {
+  border-right: 2px solid rgb(73, 174, 207);
+  padding-right: 7px;
+}
+
+.bg-success .answer-public li:nth-child(1) a {
+  border-right: 2px solid #008000;
+}
+
+.answer-public li a i {
+  margin-right: 0px;
+}
+
+.bg-success .answer-public .question-title {
+  background: #008000;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-success .answer-public .red-gradient {
+  background: #cf2313;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

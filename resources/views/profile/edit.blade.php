@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-sm-12 col-md-8">
             <div class="card">
-                <div class="card-header">My Profile</div>
+                <div class="text-light-blue card-header">My Profile</div>
                 <div class="card-body">
                     <form action="{{route('profile.update',$profile->user_id)}}" method="POST">
                         @csrf

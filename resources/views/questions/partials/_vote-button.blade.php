@@ -27,7 +27,8 @@
 
         <div class="col-sm-6 text-lg-left my-1">
             @if($item->is_author() || Auth::guest())
-            <button class="btn btn-md btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}">
+            <button class="btn btn-md btn-vote {{$item->vote_status() === 0 ? 'bg-danger' : ''}}" @guest
+                onclick="alert('Login terlebih dahulu!')" @endguest>
                 <h5>{{$item->downvote_count()}}</h5>
                 <i class="fa fa-caret-down" aria-hidden="true"></i>
             </button>

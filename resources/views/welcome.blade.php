@@ -91,14 +91,15 @@
                     @auth
                         <a href="/pertanyaan" class="btn btn-lg btn-success">Home</a>
                     @else
-                        <a href="{{ route('login') }}" class="btn btn-lg btn-success">Login</a>
+                        <a href="/pertanyaan" class="btn btn-lg btn-success">Explore LaraHub</a>
+                        {{-- <a href="{{ route('login') }}" class="btn btn-lg btn-success">Login</a>
                         <br>
                         <br>
                         @if (Route::has('register'))
                             <p class="mt-3 py-2">
                                 Don't have an account? &nbsp;<a class="btn btn-md btn-vote" href="{{ route('register') }}">Register</a>
                             </p>
-                        @endif
+                        @endif --}}
                     @endauth
                 </div>
             @endif

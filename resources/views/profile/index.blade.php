@@ -9,14 +9,14 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-sm-12 col-md-8">
             <div class="card">
-                <div class="card-header">My Profile</div>
+                <div class="text-light-blue card-header">My Profile</div>
                 <div class="card-body justify-content-center">
                     @if ($user->profile)
                     @include('profile.partials.detail')
                     @include('profile.partials.tab')
-                    <p><a href="/profile/{{Auth::user()->id}}/edit" class="btn btn-primary float-right">Edit Profile</a>
+                    <p><a href="/profile/{{Auth::user()->id}}/edit" class="btn btn-primary mt-2 float-right">Edit Profile</a>
                     </p>
                     @else
                     Profilemu masih kosong, lengkapi profilemu sekarang juga.<br>

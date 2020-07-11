@@ -15,11 +15,14 @@
             </div>
 
             <div class="col-sm-6 my-auto text-sm-right">
+                @if ($jawaban->is_author())
                 <div class="dropdown">
                     <button
                         class="btn btn-primary {{$jawaban->is_right_answer ? 'question-correct' : ''}} dropdown-toggle "
                         type="button" data-toggle="dropdown"><i class="fa fa-cog"></i>
-                        <span class="caret"></span></button>
+                        <span class="caret"></span>
+                    </button>
+                    
                     <ul class="dropdown-menu px-2">
                         @if ($jawaban->is_author() || Auth::guest())
                         @include('answers.partials._vote_button')
@@ -47,6 +50,11 @@
                         @endif
                     </ul>
                 </div>
+                @else
+                    <div class="answer-public">
+                        @include('answers.partials._vote_button')
+                    </div>
+                @endif
             </div>
 
         </div>
