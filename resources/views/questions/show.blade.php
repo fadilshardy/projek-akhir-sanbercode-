@@ -56,12 +56,12 @@
                         <i class="fa fa-comments" aria-hidden="true"></i> Komentar ({{count($commentq)}}):
                     </h6>
                     @endif
-                    <p>
+                    {{-- <p> --}}
                         @foreach ($commentq as $comment)
                         @include('questions.comment.show')
                         @endforeach
 
-                    </p>
+                    {{-- </p> --}}
                     @auth
                     <form action="/komentar_pertanyaan" method="post">
                         @csrf

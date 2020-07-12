@@ -1,12 +1,12 @@
 <div class="card mt-2 shadow-sm">
     <div class="card-header {{$jawaban->is_right_answer ? 'bg-light text-light border-success' : ''}}">
         <div class="row">
-            <div class="col-sm-6 my-1">
-                <a class=" {{$jawaban->is_right_answer ? 'question-correct' : 'question-title'}}"
+            <div class=" {{$question->user_id==Auth::user()->id ? 'col-sm-8' : 'col-sm-12'}} my-1">
+                <a class=" {{$jawaban->is_right_answer ? 'question-title' : 'question-title'}}"
                     href="/profile/{{$jawaban->user->id}}"
                     class="{{$jawaban->is_right_answer ? 'text-light' : ''}}">{{$jawaban->user->name}}</a> <span class="{{$jawaban->is_right_answer ? 'question-title ' : 'd-none'}}"><i class="fa fa-check-circle"></i> </span><br>
                 <span style="font-size: 12px"
-                    class="{{$jawaban->is_right_answer ? 'question-correct' : 'text-secondary'}}">
+                    class="{{$jawaban->is_right_answer ? 'question-title' : 'text-secondary'}}">
                     @if ($jawaban->created_at==$jawaban->updated_at)
                     Dibuat {{$jawaban->created_at->diffForHumans()}}
                     @else
@@ -14,7 +14,7 @@
                     @endif</span>
             </div>
 
-            <div class="col-sm-6 my-auto text-sm-right">
+            <div class=" {{$question->user_id==Auth::user()->id ? 'col-sm-4' : 'col-sm-12'}} my-auto text-sm-right">
                 {{-- @if ($jawaban->user_id==Auth::user()->id)
                         @include('answers.partials._vote_button')
                 @else
@@ -62,7 +62,7 @@
     <div class="card-body">
         {!!$jawaban->content!!}
         <hr>
-        <p >
+        {{-- <p > --}}
             @if ($jawaban->comment->isEmpty())
             <small><em>Belum terdapat komentar</em></small>
             @else
@@ -75,9 +75,9 @@
                 <a href="/profile/{{$komentar->user->id}}"><span
                         class="badge badge-dark">{{$komentar->user->name}}</span></a> : {{$komentar->content}}
             </button>
-            <small class="font-italic text-muted ">{{$komentar->updated_at->diffForHumans()}}</small>
+            <small class="font-italic text-muted d-inline-block ">{{$komentar->updated_at->diffForHumans()}}</small>
             @if ($komentar->user_id==Auth::user()->id)
-            <form action="/jawaban/{{$komentar->id}}/delete_comment/" method="POST">
+            <form class="d-inline-block" action="/jawaban/{{$komentar->id}}/delete_comment/" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="question_id" value="{{$question->id}}">
@@ -106,7 +106,7 @@
 
             </form>
             @endauth
-        </p>
+        {{-- </p> --}}
     </div>
     <div class="card-footer ">
         @auth
