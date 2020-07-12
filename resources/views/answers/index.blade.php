@@ -8,9 +8,9 @@
                 <span style="font-size: 12px"
                     class="{{$jawaban->is_right_answer ? 'question-correct' : 'text-secondary'}}">
                     @if ($jawaban->created_at==$jawaban->updated_at)
-                    Posted {{$jawaban->created_at->diffForHumans()}}
+                    Dibuat {{$jawaban->created_at->diffForHumans()}}
                     @else
-                    Updated {{$jawaban->updated_at->diffForHumans()}}
+                    Diubah {{$jawaban->updated_at->diffForHumans()}}
                     @endif</span>
             </div>
 

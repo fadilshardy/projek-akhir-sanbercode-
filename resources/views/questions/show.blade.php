@@ -38,9 +38,9 @@
                     <h1>{{$question->title}} </h1>
                     <small style="border-bottom: 1px solid grey" class="text-secondary italic">
                         @if ($question->created_at==$question->updated_at)
-                        Posted {{$question->created_at->diffForHumans()}}
+                        Dibuat {{$question->created_at->diffForHumans()}}
                         @else
-                        Updated {{$question->updated_at->diffForHumans()}}
+                        Diubah {{$question->updated_at->diffForHumans()}}
                         @endif
 
 

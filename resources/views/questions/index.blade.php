@@ -37,7 +37,7 @@
                                     </p>
                                     @auth
                                     <a href="/pertanyaan/create" class="btn btn-sm btn-success ml-lg-2">
-                                        <i class="fa fa-edit"></i> Create
+                                        <i class="fa fa-edit"></i> Buat
                                     </a>
                                     @endauth
                                     @guest
@@ -59,7 +59,8 @@
                                     </h5><br>
                                     <p class="card-text font-weight-light text-muted">Pembuat: <a class="question-title"
                                             href="/profile/{{$item->user->id}}">{{$item->user->name}}</a>
-                                        {{-- {{$item->answers_count}} --}}
+                                        {{-- {{$item->answers_count}} --}}<br>
+                                        <small><i class="fa fa-clock-o"></i> {{$item->updated_at->diffForHumans()}} </small>
                                     </p>
                                     <div class="tags">
                                         @foreach ($item->tag as $tag_question)

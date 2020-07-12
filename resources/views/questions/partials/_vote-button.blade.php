@@ -49,7 +49,7 @@
         </div>
 
         <div class="col-sm-12 text-center">
-            <button class="btn btn-sm btn-success btn-block mt-1">Total answers: {{$item->answers_count}}</button>
+            <button class="btn btn-sm btn-success btn-block mt-1">Telah Dijawab: {{$item->answers_count}}x</button>
 
         </div>
     </div>

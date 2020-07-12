@@ -20,7 +20,7 @@
         </div>
             <div class="card-body text-muted">
                 
-                {!! \Illuminate\Support\Str::limit($question->content, 150, $end='...') !!}. 
+                {!! \Illuminate\Support\Str::limit(strip_tags($question->content), 150, $end='...') !!}...<a class="question-title" href="/pertanyaan/{{$question->id}}">selengkapnya</a> 
         </div>
         </div>
         
@@ -43,7 +43,7 @@
         </div>
             <div class="card-body text-muted">
                 
-                {!! \Illuminate\Support\Str::limit($answer->content, 150, $end='...') !!}. 
+                {!! \Illuminate\Support\Str::limit(strip_tags($answer->content), 150, $end='...') !!}...<a class="question-title" href="/pertanyaan/{{$answer->question->id}}">selengkapnya</a> 
         </div>
         </div>
         
