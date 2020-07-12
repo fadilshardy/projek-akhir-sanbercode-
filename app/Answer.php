@@ -125,7 +125,11 @@ class Answer extends Model
             ->where('user_id', auth()->id())
             ->value('voted');
 
-        return $status;
+        if ($status === 0) {
+            return 'downvote';
+        } else if ($status === 1) {
+            return 'upvote';
+        }
     }
 
 }
