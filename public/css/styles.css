@@ -11279,3 +11279,44 @@ div.arrow-up {
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.upvote, .downvote {
+  border-radius: 25px;
+  padding: 3px;
+}
+
+.upvote {
+  background: linear-gradient(to right top, #11998e 20%, #38ef7d 80%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#11998e", endColorstr="#38ef7d", GradientType=1);
+}
+
+.downvote {
+  background: linear-gradient(to right top, #e74a3b 20%, #cf2313 80%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e74a3b", endColorstr="#cf2313", GradientType=1);
+}
+
+.upvote div, .downvote div {
+  background: #f8f9fc;
+  padding: 5px;
+  border-radius: 25px;
+}
+
+.upvote.voted div, .downvote.voted div {
+  background: transparent !important;
+}
+
+.upvote.voted div .question-title {
+  background: #fff;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.downvote.voted div .red-gradient {
+  background: #fff;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
