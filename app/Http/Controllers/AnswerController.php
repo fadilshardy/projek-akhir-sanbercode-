@@ -111,6 +111,7 @@ class AnswerController extends Controller
     {
         //dd($request->all());
         $cek = Answer::find($id);
+        //dd();
         $user = User::find($cek->user_id);
         if ($cek->is_right_answer == 0) {
             $update_point = User::where('id', '=', $cek->user_id)->update([
@@ -123,6 +124,7 @@ class AnswerController extends Controller
         }
         $answer = Answer::Where('id', '=', $id)->update([
             'is_right_answer' => $request['is_right_answer'],
+            'updated_at' => $cek->updated_at,
         ]);
         return redirect('/pertanyaan/' . $request['question_id']);
     }
