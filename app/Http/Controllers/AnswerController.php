@@ -113,6 +113,8 @@ class AnswerController extends Controller
         $cek = Answer::find($id);
         //dd();
         $user = User::find($cek->user_id);
+
+        if($cek->user_id !=Auth::user()->id){
         if ($cek->is_right_answer == 0) {
             $update_point = User::where('id', '=', $cek->user_id)->update([
                 'point' => $user->point + 15,
@@ -122,6 +124,7 @@ class AnswerController extends Controller
                 'point' => $user->point - 15,
             ]);
         }
+    }
         $answer = Answer::Where('id', '=', $id)->update([
             'is_right_answer' => $request['is_right_answer'],
             'updated_at' => $cek->updated_at,

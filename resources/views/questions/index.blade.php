@@ -24,7 +24,7 @@
                                     </h5>
                                     @else
                                     <h6 class="text-light-blue mb-0">
-                                        Menampilkan pertanyaan dengan judul: {{$title}}
+                                        Menampilkan pertanyaan terkait: {{$title}}
                                     </h6>
                                     @endif
 
