@@ -78,7 +78,7 @@
             <small class="font-italic text-muted d-inline-block ">{{$komentar->updated_at->diffForHumans()}}</small>
             @auth
             @if ($komentar->user_id==Auth::user()->id)
-            <form class="d-inline-block" action="/jawaban/{{$komentar->id}}/delete_comment/" method="POST">
+            <form class="d-inline-block" action="/jawaban/{{$komentar->id}}/delete_comment" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="question_id" value="{{$question->id}}">
