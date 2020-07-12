@@ -28,6 +28,7 @@ Route::post('/jawaban/{answer}/downvote', 'AnswerController@downvote');
 Route::post('/jawaban/{answer}/unvote/{status}', 'AnswerController@unvote');
 Route::put('jawaban/{id}/right', 'AnswerController@right');
 
+Route::delete('/jawaban/{id}/delete_comment/', 'AnswerController@delete_comment');
 Route::resource('komentar_pertanyaan', 'CommentQuestionController')->except(['create']);
 Route::get('komentar_pertanyaan/create/{id}', 'CommentQuestionController@create');
 
@@ -40,6 +41,9 @@ Route::resource('profile', 'ProfileController')->except(['show']);
 Route::post('/pertanyaan/{question}/upvote', 'QuestionController@upvote');
 Route::post('/pertanyaan/{question}/downvote', 'QuestionController@downvote');
 Route::post('/pertanyaan/{question}/unvote/{status}', 'QuestionController@unvote');
+
+Route::delete('/pertanyaan/{id}/delete_comment/', 'QuestionController@delete_comment');
+
 });
 Route::get('pertanyaan', 'QuestionController@index')->name('index');
 Route::post('pertanyaan/cari', 'QuestionController@search');

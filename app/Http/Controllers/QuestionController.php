@@ -185,4 +185,9 @@ class QuestionController extends Controller
             // 'questions' => Question::withCount('likes')->orderBy('likes_count')->get(),
         ]);
     }
+    public function delete_comment($id,Request $request){
+        //dd($id);
+        $del = Comment_Question::where('id','=', $id)->delete();
+        return redirect('/pertanyaan/'.$request['question_id']);
+    }
 }

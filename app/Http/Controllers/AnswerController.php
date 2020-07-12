@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\User;
+use App\Comment_Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -142,5 +143,10 @@ class AnswerController extends Controller
     {
         $answer->unvote($status);
         return redirect('pertanyaan/' . $answer->question_id);
+    }
+    public function delete_comment($id,Request $request){
+        //dd($id);
+        $del = Comment_Answer::where('id','=', $id)->delete();
+        return redirect('/pertanyaan/'.$request['question_id']);
     }
 }
