@@ -17,18 +17,18 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 my-auto">
-                                    
-                                        @if (empty($title))
-                                        <h5 class="text-light-blue mb">
+
+                                    @if (empty($title))
+                                    <h5 class="text-light-blue mb">
                                         Kumpulan Pertanyaan
                                     </h5>
-                                        @else
-                                        <h6 class="text-light-blue mb-0">
+                                    @else
+                                    <h6 class="text-light-blue mb-0">
                                         Menampilkan pertanyaan dengan judul: {{$title}}
                                     </h6>
-                                        @endif
-                                        
-                                    
+                                    @endif
+
+
                                 </div>
 
                                 <div class="col-sm-12 col-md-6 my-1">
@@ -74,7 +74,10 @@
                             <hr>
                             @endforeach
                             {{-- end of 1 question --}}
+                            {{ $questions->links() }}
+
                         </div>
+
                     </div>
                 </div>
 
