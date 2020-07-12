@@ -1,7 +1,7 @@
 <div class="card mt-2 shadow-sm">
     <div class="card-header {{$jawaban->is_right_answer ? 'bg-light text-light border-success' : ''}}">
         <div class="row">
-            <div class=" {{$question->user_id==Auth::user()->id ? 'col-sm-8' : 'col-sm-12'}} my-1">
+            <div class=" @auth{{$question->user_id==Auth::user()->id ? 'col-sm-8' : 'col-sm-12'}}@endauth my-1">
                 <a class=" {{$jawaban->is_right_answer ? 'question-title' : 'question-title'}}"
                     href="/profile/{{$jawaban->user->id}}"
                     class="{{$jawaban->is_right_answer ? 'text-light' : ''}}">{{$jawaban->user->name}}</a> <span class="{{$jawaban->is_right_answer ? 'question-title ' : 'd-none'}}"><i class="fa fa-check-circle"></i> </span><br>
@@ -14,7 +14,7 @@
                     @endif</span>
             </div>
 
-            <div class=" {{$question->user_id==Auth::user()->id ? 'col-sm-4' : 'col-sm-12'}} my-auto text-sm-right">
+            <div class=" @auth{{$question->user_id==Auth::user()->id ? 'col-sm-4' : 'col-sm-12'}}@endauth my-auto text-sm-right">
                 {{-- @if ($jawaban->user_id==Auth::user()->id)
                         @include('answers.partials._vote_button')
                 @else
@@ -76,6 +76,7 @@
                         class="badge badge-dark">{{$komentar->user->name}}</span></a> : {{$komentar->content}}
             </button>
             <small class="font-italic text-muted d-inline-block ">{{$komentar->updated_at->diffForHumans()}}</small>
+            @auth
             @if ($komentar->user_id==Auth::user()->id)
             <form class="d-inline-block" action="/jawaban/{{$komentar->id}}/delete_comment/" method="POST">
                 @csrf
@@ -84,7 +85,7 @@
                 <button class="btn btn-xs btn-danger " >Delete</button>
             </form>
             @endif
-            
+            @endauth
             <br>
 
             @endforeach
